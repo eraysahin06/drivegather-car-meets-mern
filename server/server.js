@@ -76,7 +76,30 @@ app.post('/vehicles', async (req, res) => {
     }
 });
 
+// Update vehicle route
+app.put('/vehicles/:id', async (req, res) => {
+    const { id } = req.params;
+    const { make, model, year, userEmail } = req.body;
 
+    try {
+        // Find the vehicle by id
+        const vehicle = await Vehicle.findById(id);
+
+        if (!vehicle) {
+            return res.status(404).json({ message: "Vehicle not found" });
+        }
+
+        // Update the vehicle's details
+        vehicle.make = make;
+        vehicle.model = model;
+        vehicle.year = year;
+
+        await vehicle.save();
+        res.status(200).json(vehicle);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
 
 app.listen(PORT, () => {
     console.log('Server running on port ' + PORT);

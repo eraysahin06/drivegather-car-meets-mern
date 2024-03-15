@@ -1,21 +1,33 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import carBrands from '../../../data/carBrands';
 
-const VehicleForm = ({ onSubmit }) => {
+const VehicleForm = ({ vehicle: initialVehicle, onSubmit, onCancel }) => {
     const [vehicle, setVehicle] = useState({
         make: '',
         model: '',
         year: '',
+        _id: ''
     });
+
+    useEffect(() => {
+        if (initialVehicle) {
+            setVehicle(initialVehicle);
+        }
+    }, [initialVehicle]);
 
     const handleChange = (e) => {
         setVehicle({ ...vehicle, [e.target.name]: e.target.value });
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(vehicle);
+    };
+
     return (
-        <form onSubmit={(e) => onSubmit(e, vehicle)} className="bg-gray-800 p-8 rounded-lg">
-            <h1 className="text-2xl font-bold text-center mb-4">Add Vehicle</h1>
+        <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-lg">
+            <h1 className="text-2xl font-bold text-center mb-4">{initialVehicle ? 'Edit Vehicle' : 'Add Vehicle'}</h1>
             <div className="mb-4">
                 <label htmlFor="make" className="block mb-2">Make</label>
                 <select name="make" id="make" value={vehicle.make} onChange={handleChange} className="w-full p-2 rounded-lg bg-gray-700">
@@ -38,13 +50,21 @@ const VehicleForm = ({ onSubmit }) => {
                 <label htmlFor="year" className="block mb-2">Year</label>
                 <input type="text" name="year" id="year" value={vehicle.year} onChange={handleChange} className="w-full p-2 rounded-lg bg-gray-700" />
             </div>
-            <button type="submit" className="w-full p-2 bg-blue-600 hover:bg-blue-800 rounded-lg font-bold">Add Vehicle</button>
+            <button type="submit" className="w-full p-2 bg-blue-600 hover:bg-blue-800 rounded-lg font-bold">{initialVehicle ? 'Update Vehicle' : 'Add Vehicle'}</button>
+            {initialVehicle && <button type="button" onClick={onCancel} className="w-full mt-2 p-2 bg-red-600 hover:bg-red-800 rounded-lg font-bold">Cancel</button>}
         </form>
     );
 };
 
 VehicleForm.propTypes = {
+    vehicle: PropTypes.shape({
+        _id: PropTypes.string,
+        make: PropTypes.string,
+        model: PropTypes.string,
+        year: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    }),
     onSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func
 };
 
 export default VehicleForm;
