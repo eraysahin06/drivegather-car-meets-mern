@@ -1,18 +1,7 @@
-import { useState, useEffect } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { useAuth } from '../../hooks/useAuth';
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const auth = getAuth();
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-    });
-
-    // Clean up the subscription when the component unmounts
-    return unsubscribe;
-  }, []);
+  const user = useAuth();
 
   return (
     <div className="flex justify-center items-center h-screen">
