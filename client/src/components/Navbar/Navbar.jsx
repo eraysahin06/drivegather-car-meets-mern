@@ -32,9 +32,6 @@ const Navbar = () => {
           <Link to="/about" className="hover:text-gray-400">
             About
           </Link>
-          <Link to="/contact" className="hover:text-gray-400">
-            Contact
-          </Link>
           {user ? (
             <>
               <span>{user.displayName || "User"}</span>
@@ -82,9 +79,6 @@ const Navbar = () => {
           </Link>
           <Link to="/about" className="block px-4 py-2 hover:text-gray-400">
             About
-          </Link>
-          <Link to="/contact" className="block px-4 py-2 hover:text-gray-400">
-            Contact
           </Link>
           {user ? (
             <>
