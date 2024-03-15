@@ -22,6 +22,7 @@ const VehicleCard = ({ vehicle, onEdit }) => {
             if (onEdit) {
                 onEdit(response.data);
             }
+            window.location.reload();
         } catch (error) {
             console.error('Error updating vehicle:', error);
         }

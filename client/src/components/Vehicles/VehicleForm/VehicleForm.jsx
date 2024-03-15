@@ -25,6 +25,15 @@ const VehicleForm = ({ vehicle: initialVehicle, onSubmit, onCancel }) => {
         onSubmit(vehicle);
     };
 
+    const generateYearOptions = () => {
+        const currentYear = new Date().getFullYear();
+        const years = [];
+        for (let year = currentYear; year >= 1930; year--) {
+            years.push(<option key={year} value={year}>{year}</option>);
+        }
+        return years;
+    };
+
     return (
         <form onSubmit={handleSubmit} className="bg-gray-800 p-8 rounded-lg">
             <h1 className="text-2xl font-bold text-center mb-4">{initialVehicle ? 'Edit Vehicle' : 'Add Vehicle'}</h1>
@@ -48,7 +57,10 @@ const VehicleForm = ({ vehicle: initialVehicle, onSubmit, onCancel }) => {
             </div>
             <div className="mb-4">
                 <label htmlFor="year" className="block mb-2">Year</label>
-                <input type="text" name="year" id="year" value={vehicle.year} onChange={handleChange} className="w-full p-2 rounded-lg bg-gray-700" />
+                <select name="year" id="year" value={vehicle.year} onChange={handleChange} className="w-full p-2 rounded-lg bg-gray-700">
+                    <option value="">Select Year</option>
+                    {generateYearOptions()}
+                </select>
             </div>
             <button type="submit" className="w-full p-2 bg-blue-600 hover:bg-blue-800 rounded-lg font-bold">{initialVehicle ? 'Update Vehicle' : 'Add Vehicle'}</button>
             {initialVehicle && <button type="button" onClick={onCancel} className="w-full mt-2 p-2 bg-red-600 hover:bg-red-800 rounded-lg font-bold">Cancel</button>}

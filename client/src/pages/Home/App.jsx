@@ -45,7 +45,7 @@ function App() {
       <div className="flex-1 p-5">
         {hasVehicle && vehicle ? (
           <div className="mb-5">
-            <h2 className="text-xl font-semibold">Vehicle</h2>
+            <h2 className="text-3xl font-semibold mb-4">Vehicle</h2>
             <VehicleCard vehicle={vehicle} />
           </div>
         ) : (
@@ -61,7 +61,7 @@ function App() {
         )}
 
         <div className="flex items-center mb-5">
-          <h2 className="text-xl font-semibold">
+          <h2 className="text-3xl font-semibold">
             Explore Car Meets in Your Area
           </h2>
         </div>
