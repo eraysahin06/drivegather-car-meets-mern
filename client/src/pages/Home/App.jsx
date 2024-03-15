@@ -37,6 +37,8 @@ function App() {
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
         user={user}
+        hasVehicle={hasVehicle}
+        vehicle={vehicle} // Pass the vehicle object to the Sidebar component
       />
 
       {/* Main content */}
