@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { registerUser, signInWithGoogle } from '../../auth/authenticate';
-import { FaGoogle } from 'react-icons/fa';
+import { useNavigate, Link } from 'react-router-dom';
+import { registerUser } from '../../auth/authenticate';
 import axios from 'axios';
 
 const Register = () => {
@@ -38,33 +37,13 @@ const Register = () => {
 };
 
 
-  const handleGoogleSignIn = async () => {
-    try {
-      const user = await signInWithGoogle();
-      if (user) {
-        console.log('Google signed-in user:', user.displayName || 'User');
-        navigate('/');
-      }
-    } catch (error) {
-      setErrorMessage(error.message);
-    }
-  };
-
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen  bg-gray-900 text-white">
       <form onSubmit={handleSubmit} className="w-full max-w-xs">
         {errorMessage && <div className="bg-red-100 text-red-700 p-2 rounded mb-4">{errorMessage}</div>}
         <h1 className="text-2xl font-bold text-center mb-6">Register</h1>
-        <button
-          onClick={handleGoogleSignIn}
-          type="button"
-          className="my-4 flex items-center justify-center bg-white text-black border border-black py-2 px-4 rounded focus:outline-none w-full"
-        >
-          <FaGoogle className="mr-2" />
-          Sign in with Google
-        </button>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+          <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="name">
             Name
           </label>
           <input
@@ -77,7 +56,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+          <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="email">
             Email
           </label>
           <input
@@ -90,7 +69,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+          <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="password">
             Password
           </label>
           <input
@@ -103,7 +82,7 @@ const Register = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="retypePassword">
+          <label className="block text-gray-400 text-sm font-bold mb-2" htmlFor="retypePassword">
             Retype Password
           </label>
           <input
@@ -122,6 +101,9 @@ const Register = () => {
           >
             Register
           </button>
+        </div>
+        <div className="mt-4 text-center">
+          Already have an account? <Link to="/login" className="text-blue-500">Sign in</Link>
         </div>
       </form>
     </div>

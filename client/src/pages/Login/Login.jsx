@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { loginUser, signInWithGoogle } from "../../auth/authenticate";
 import { FaGoogle } from "react-icons/fa";
 
@@ -28,7 +28,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen bg-gray-900 text-white">
       <form onSubmit={handleSubmit} className="w-full max-w-xs">
         <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
         <button
@@ -41,7 +41,7 @@ const Login = () => {
         </button>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-400 text-sm font-bold mb-2"
             htmlFor="email"
           >
             Email
@@ -57,7 +57,7 @@ const Login = () => {
         </div>
         <div className="mb-6">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-400 text-sm font-bold mb-2"
             htmlFor="password"
           >
             Password
@@ -79,7 +79,9 @@ const Login = () => {
             Log In
           </button>
         </div>
-       
+        <div className="mt-4 text-center">
+          Don&apos;t have an account? <Link to="/register" className="text-blue-500">Register</Link>
+        </div>
       </form>
     </div>
   );

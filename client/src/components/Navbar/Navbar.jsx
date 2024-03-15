@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const user = useAuth();
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,23 +36,28 @@ const Navbar = () => {
     signOut(auth)
       .then(() => {
         console.log("User signed out");
+        navigate("/register");
       })
       .catch((error) => {
         console.error("Sign out error:", error);
       });
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className={`fixed w-full top-0 z-10 transition-colors duration-300 ${isScrolled ? "bg-black" : "bg-gray-800"} text-white px-4 py-2`}>
       <div className="flex justify-between items-center max-w-6xl mx-auto">
-        <Link to="/" className="text-2xl font-bold">
+        <Link to="/" className="text-2xl font-bold" onClick={closeMenu}>
           Car Meets
         </Link>
         <div className="hidden md:flex space-x-4 items-center">
-          <Link to="/" className="hover:text-gray-400">
+          <Link to="/" className="hover:text-gray-400" onClick={closeMenu}>
             Home
           </Link>
-          <Link to="/about" className="hover:text-gray-400">
+          <Link to="/about" className="hover:text-gray-400" onClick={closeMenu}>
             About
           </Link>
           {user ? (
@@ -75,6 +81,7 @@ const Navbar = () => {
                   <Link
                     to="/profile"
                     className="block px-4 py-2 hover:bg-gray-700"
+                    onClick={closeMenu}
                   >
                     Profile
                   </Link>
@@ -92,12 +99,14 @@ const Navbar = () => {
               <Link
                 to="/login"
                 className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-1 px-3 rounded"
+                onClick={closeMenu}
               >
                 Sign In
               </Link>
               <Link
                 to="/register"
                 className="bg-green-600 hover:bg-green-800 text-white font-bold py-1 px-3 rounded"
+                onClick={closeMenu}
               >
                 Register
               </Link>
@@ -112,10 +121,10 @@ const Navbar = () => {
       </div>
       {isMenuOpen && (
         <div className="md:hidden bg-gray-900 bg-opacity-50 py-2">
-          <Link to="/" className="block px-4 py-2 hover:text-gray-400">
+          <Link to="/" className="block px-4 py-2 hover:text-gray-400" onClick={closeMenu}>
             Home
           </Link>
-          <Link to="/about" className="block px-4 py-2 hover:text-gray-400">
+          <Link to="/about" className="block px-4 py-2 hover:text-gray-400" onClick={closeMenu}>
             About
           </Link>
           {user ? (
@@ -123,6 +132,7 @@ const Navbar = () => {
               <Link
                 to="/profile"
                 className="block px-4 py-2 bg-black hover:bg-gray-900 text-white font-bold rounded"
+                onClick={closeMenu}
               >
                 Profile
               </Link>
@@ -138,12 +148,14 @@ const Navbar = () => {
               <Link
                 to="/login"
                 className="block px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white font-bold rounded"
+                onClick={closeMenu}
               >
                 Sign In
               </Link>
               <Link
                 to="/register"
                 className="block px-4 py-2 bg-green-600 hover:bg-green-800 text-white font-bold rounded"
+                onClick={closeMenu}
               >
                 Register
               </Link>
