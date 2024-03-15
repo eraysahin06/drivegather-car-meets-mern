@@ -1,39 +1,39 @@
-import { useAuth } from '../../hooks/useAuth';
-import { FaPlus } from 'react-icons/fa'; // For the [+] icon
+import { useState } from "react";
+import { useAuth } from "../../hooks/useAuth";
+import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Sidebar from "../../components/Sidebar/Sidebar";
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const user = useAuth();
 
   return (
     <div className="flex h-screen bg-gray-900 text-white">
       {/* Sidebar */}
-      <div className="w-64 bg-gray-800 p-5">
-        {user && (
-          <div className="text-center mb-5">
-            <img className="w-20 h-20 rounded-full mx-auto" src={user.photoURL || 'https://via.placeholder.com/150'} alt="Profile" />
-            <p className="text-lg font-semibold mt-2">{user.displayName || 'User'}</p>
-          </div>
-        )}
-        <ul>
-          <li className="my-2 hover:bg-gray-700 p-2 rounded-md"><a href="#">Add/Modify Vehicle</a></li>
-          <li className="my-2 hover:bg-gray-700 p-2 rounded-md"><a href="#">Explore Car Meets</a></li>
-          <li className="my-2 hover:bg-gray-700 p-2 rounded-md"><a href="#">Explore Communities</a></li>
-          <li className="my-2 hover:bg-gray-700 p-2 rounded-md"><a href="#">Create a Car Meet</a></li>
-          <li className="my-2 hover:bg-gray-700 p-2 rounded-md"><a href="#">Settings</a></li>
-        </ul>
-      </div>
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+        user={user}
+      />
 
       {/* Main content */}
       <div className="flex-1 p-5">
         <div className="flex items-center mb-5">
-          <FaPlus className="mr-2" />
-          <h2 className="text-xl font-semibold">Vehicles</h2>
+          <Link
+            to="/add-vehicle"
+            className="p-4 bg-gray-800 hover:bg-gray-700 rounded-md"
+          >
+            <FaPlus size={24} />
+          </Link>
+          <h2 className="text-xl font-semibold ml-2">Vehicles</h2>
         </div>
         <p className="mb-5">Your vehicles will be displayed here.</p>
 
         <div className="flex items-center mb-5">
-          <FaPlus className="mr-2" />
-          <h2 className="text-xl font-semibold">Explore Car Meets in Your Area</h2>
+          <h2 className="text-xl font-semibold">
+            Explore Car Meets in Your Area
+          </h2>
         </div>
         <p>Your local car meets will be displayed here.</p>
       </div>

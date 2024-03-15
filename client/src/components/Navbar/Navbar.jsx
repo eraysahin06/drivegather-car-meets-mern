@@ -34,14 +34,12 @@ const Navbar = () => {
           </Link>
           {user ? (
             <>
-              <span>{user.displayName || "User"}</span>
-              {user.photoURL && (
-                <img
-                  className="w-8 h-8 rounded-full ml-2"
-                  src={user.photoURL}
-                  alt="Profile"
-                />
-              )}
+              <Link
+                to="/profile"
+                className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-1 px-3 rounded ml-2"
+              >
+                {user.displayName || "User"}
+              </Link>
               <button
                 onClick={handleSignOut}
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded ml-2"
@@ -82,16 +80,12 @@ const Navbar = () => {
           </Link>
           {user ? (
             <>
-              <div className="flex items-center px-4 py-2">
-                <span>{user.displayName || "User"}</span>
-                {user.photoURL && (
-                  <img
-                    className="w-8 h-8 rounded-full ml-2"
-                    src={user.photoURL}
-                    alt="Profile"
-                  />
-                )}
-              </div>
+              <Link
+                to="/profile"
+                className="block px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white font-bold rounded"
+              >
+                {user.displayName || "User"}
+              </Link>
               <button
                 onClick={handleSignOut}
                 className="block w-full text-left px-4 py-2 bg-red-500 hover:bg-red-700 text-white font-bold rounded"
