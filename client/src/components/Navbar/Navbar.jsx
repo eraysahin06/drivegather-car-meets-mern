@@ -86,6 +86,41 @@ const Navbar = () => {
           <Link to="/contact" className="block px-4 py-2 hover:text-gray-400">
             Contact
           </Link>
+          {user ? (
+            <>
+              <div className="flex items-center px-4 py-2">
+                <span>{user.displayName || "User"}</span>
+                {user.photoURL && (
+                  <img
+                    className="w-8 h-8 rounded-full ml-2"
+                    src={user.photoURL}
+                    alt="Profile"
+                  />
+                )}
+              </div>
+              <button
+                onClick={handleSignOut}
+                className="block w-full text-left px-4 py-2 bg-red-500 hover:bg-red-700 text-white font-bold rounded"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="block px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/register"
+                className="block px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-bold rounded"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       )}
     </nav>
