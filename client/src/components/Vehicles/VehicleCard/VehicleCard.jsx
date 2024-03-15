@@ -27,6 +27,10 @@ const VehicleCard = ({ vehicle, onEdit }) => {
         }
     };
 
+    if (!vehicle) {
+        return null; // or return a placeholder/loading component
+    }
+
     return (
         <div className="bg-gray-800 p-4 rounded-lg">
             {isEditing ? (
