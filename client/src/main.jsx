@@ -7,6 +7,7 @@ import Layout from "./Layout.jsx";
 import Login from "./pages/Login/Login.jsx";
 import Register from "./pages/Register/Register.jsx";
 import About from "./pages/About/About.jsx";
+import AddVehicle from "./pages/AddVehicle/AddVehicle.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/register", element: <Register /> },
       { path: "/about", element: <About />},
+      { path: "/add-vehicle", element: <AddVehicle /> },
     ],
   },
 ]);

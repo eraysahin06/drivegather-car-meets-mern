@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { registerUser, signInWithGoogle } from '../../auth/authenticate';
 import { FaGoogle } from 'react-icons/fa';
+import axios from 'axios';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -15,19 +16,27 @@ const Register = () => {
     e.preventDefault();
     setErrorMessage('');
     if (password !== retypePassword) {
-      setErrorMessage("Passwords do not match!");
-      return;
+        setErrorMessage("Passwords do not match!");
+        return;
     }
     try {
-      const user = await registerUser(name, email, password);
-      if (user) {
-        console.log('Registered user:', user.displayName || 'User');
-        navigate('/');
-      }
+        const user = await registerUser(name, email, password);
+        if (user) {
+            console.log('Registered user:', user.displayName || 'User');
+            // Add or update user in your database
+            await axios.post('http://localhost:3000/users', {
+                firebaseId: user.uid,
+                displayName: user.displayName,
+                email: user.email,
+                photoURL: user.photoURL
+            });
+            navigate('/');
+        }
     } catch (error) {
-      setErrorMessage(error.message);
+        setErrorMessage(error.message);
     }
-  };
+};
+
 
   const handleGoogleSignIn = async () => {
     try {

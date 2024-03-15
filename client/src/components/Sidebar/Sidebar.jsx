@@ -48,7 +48,7 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
           </Link>
 
           <ul>
-            <Link to="#">
+            <Link to="/add-vehicle">
               <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
                 <FaCar className="mr-2" />
                 Add/Modify Vehicle
