@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import {
   FaCar,
@@ -20,26 +20,32 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, user }) => {
       {isSidebarOpen && (
         <>
           {user && (
-            <div className="text-center mb-5 mt-8">
-              <div>
+            <div className="text-center mb-5 mt-8 bg-gray-700 rounded-lg py-6">
+              <div className="relative group">
                 <img
                   className="w-20 h-20 rounded-full mx-auto"
                   src={user.photoURL || "https://via.placeholder.com/150"}
                   alt="Profile"
                 />
-                <p className="text-lg font-semibold mt-2">
-                  {user.displayName || "User"}
-                </p>
               </div>
-              {/* Update car information from backend */}
-              <Link to="#">
-                <div className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg hover:bg-gray-900">
-                  <FaCar className="text-2xl text-[#4FD1C5] mr-2" />
-                  <p className="text-lg">2021 Nissan GT-R</p>
-                </div>
+              <p className="text-lg font-semibold mt-2">
+                {user.displayName || "User"}
+              </p>
+              <Link to="/profile">
+                <button className="text-sm text-gray-400 hover:text-gray-200">
+                  Edit Profile
+                </button>
               </Link>
             </div>
           )}
+
+          {/* Update car information from backend */}
+          <Link to="#">
+            <div className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg hover:bg-gray-900">
+              <FaCar className="text-2xl text-[#4FD1C5] mr-2" />
+              <p className="text-lg">2021 Nissan GT-R</p>
+            </div>
+          </Link>
 
           <ul>
             <Link to="#">
