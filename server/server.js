@@ -12,16 +12,48 @@ app.use(cors());
 
 connectDB();
 
+// Get user by email route
+app.get('/users/:email', async (req, res) => {
+    const { email } = req.params;
+
+    try {
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Add user route
 app.post('/users', async (req, res) => {
-    const { firebaseId, displayName, email, photoURL } = req.body;
+    const { firebaseId, displayName, email, username, photoURL } = req.body;
     try {
-        let user = await User.findOneAndUpdate({ firebaseId }, { displayName, email, photoURL }, { new: true, upsert: true });
+        let user = await User.findOneAndUpdate({ firebaseId }, { displayName, email, username, photoURL }, { new: true, upsert: true });
         res.status(201).json(user);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
 });
+
+
+// Update user route
+app.put('/users/:email', async (req, res) => {
+    const { email } = req.params;
+    const { username } = req.body;
+
+    try {
+        const user = await User.findOneAndUpdate({ email }, { username }, { new: true });
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
 
 // Get user's vehicles route
 app.get('/vehicles', async (req, res) => {

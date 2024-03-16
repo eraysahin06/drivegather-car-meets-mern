@@ -7,7 +7,16 @@ const userSchema = new mongoose.Schema({
         unique: true
     },
     displayName: String,
-    email: String,
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
     photoURL: String
 });
 
