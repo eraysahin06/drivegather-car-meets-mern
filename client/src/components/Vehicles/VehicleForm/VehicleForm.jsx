@@ -22,8 +22,9 @@ const VehicleForm = ({ vehicle: initialVehicle, onSubmit, onCancel }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(vehicle);
+        onSubmit(e, vehicle);
     };
+    
 
     const generateYearOptions = () => {
         const currentYear = new Date().getFullYear();
