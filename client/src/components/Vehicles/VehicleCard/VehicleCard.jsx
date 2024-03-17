@@ -39,7 +39,7 @@ const VehicleCard = ({ vehicle, onEdit }) => {
             ) : (
                 <>
                     <div className="flex justify-between items-center mb-2">
-                        <h3 className="text-lg font-bold">{vehicle.year} {vehicle.make} {vehicle.model}</h3>
+                        <h3 className="text-lg font-bold">{vehicle.make} {vehicle.model}</h3>
                         <button onClick={handleEditClick} className="text-gray-400 hover:text-white">
                             <FaEdit />
                         </button>

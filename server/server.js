@@ -211,6 +211,33 @@ app.get('/communities', async (req, res) => {
     }
 });
 
+// Join community route
+app.put('/communities/:id/join', async (req, res) => {
+    const { id } = req.params;
+    const { userId } = req.body;
+
+    try {
+        const community = await Community.findById(id);
+        const user = await User.findById(userId);
+
+        if (!community || !user) {
+            return res.status(404).json({ message: "Community or user not found" });
+        }
+
+        // Check if the user is already a member
+        if (!community.members.includes(userId)) {
+            community.members.push(userId);
+            community.memberCount += 1;
+            await community.save();
+        }
+
+        res.status(200).json(community);
+    } catch (error) {
+        console.error('Server error:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
 
 app.listen(PORT, () => {
     console.log('Server running on port ' + PORT);
