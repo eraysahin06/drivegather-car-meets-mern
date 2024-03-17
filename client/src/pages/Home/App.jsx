@@ -3,6 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import VehicleCard from "../../components/Vehicles/VehicleCard/VehicleCard";
+import Communities from "../../components/Communities/Communities";
 import { useAuth } from "../../hooks/useAuth";
 import { useHasVehicle } from "../../hooks/useHasVehicle";
 import axios from "axios";
@@ -77,12 +78,7 @@ function App() {
           </div>
         )}
 
-        <div className="flex items-center mb-5">
-          <h2 className="text-3xl font-semibold">
-            Explore Car Meets in Your Area
-          </h2>
-        </div>
-        <p>Your local car meets will be displayed here.</p>
+        <Communities />
       </div>
     </div>
   );

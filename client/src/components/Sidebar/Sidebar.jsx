@@ -11,7 +11,13 @@ import {
   FaPlus,
 } from "react-icons/fa";
 
-const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, user, hasVehicle, vehicle }) => {
+const Sidebar = ({
+  isSidebarOpen,
+  setIsSidebarOpen,
+  user,
+  hasVehicle,
+  vehicle,
+}) => {
   return (
     <div
       className={`relative ${
@@ -55,50 +61,56 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen, user, hasVehicle, vehicle })
               </div>
             </Link>
           )}
-        <ul>
-          <Link to="#">
-            <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-              <FaMapMarkedAlt className="mr-2" />
-              Explore Car Meets
-            </li>
-          </Link>
-          <Link to="#">
-            <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-              <FaUsers className="mr-2" />
-              Explore Communities
-            </li>
-          </Link>
-          <Link to="#">
-            <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-              <FaCalendarPlus className="mr-2" />
-              Create a Car Meet
-            </li>
-          </Link>
-          <Link to="#">
-            <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-              <FaCog className="mr-2" />
-              Settings
-            </li>
-          </Link>
-        </ul>
-      </>
-    )}
-    <button
-      className={`absolute ${
-        isSidebarOpen ? "top-1/2 -right-8" : "top-1/2 -right-11"
-      } transform -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full`}
-      onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-    >
-      {isSidebarOpen ? (
-        <FaAngleLeft size={20} color="#4FD1C5" />
-      ) : (
-        <FaAngleRight size={20} color="#4FD1C5" />
-      )}
-    </button>
-  </div>
-);
-};
+          <ul>
+            <Link to="#">
+              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                <FaMapMarkedAlt className="mr-2" />
+                Explore Car Meets
+              </li>
+            </Link>
+            <Link to="#">
+              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                <FaUsers className="mr-2" />
+                Explore Communities
+              </li>
+            </Link>
+            <Link to="/create-community">
+              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                <FaUsers className="mr-2" />
+                Create a Community
+              </li>
+            </Link>
 
+            <Link to="#">
+              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                <FaCalendarPlus className="mr-2" />
+                Create a Car Meet
+              </li>
+            </Link>
+            <Link to="#">
+              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                <FaCog className="mr-2" />
+                Settings
+              </li>
+            </Link>
+          </ul>
+        </>
+      )}
+      <button
+        className={`absolute ${
+          isSidebarOpen ? "top-1/2 -right-8" : "top-1/2 -right-11"
+        } transform -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full`}
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        {isSidebarOpen ? (
+          <FaAngleLeft size={20} color="#4FD1C5" />
+        ) : (
+          <FaAngleRight size={20} color="#4FD1C5" />
+        )}
+      </button>
+    </div>
+  );
+};
 
 Sidebar.propTypes = {
   isSidebarOpen: PropTypes.bool,

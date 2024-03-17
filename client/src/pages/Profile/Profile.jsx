@@ -46,31 +46,33 @@ const Profile = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 bg-gray-900 text-white">
-            <h1 className="text-2xl font-bold mb-4">Profile</h1>
-            {errorMessage && <div className="text-red-500">{errorMessage}</div>}
-            <div className="mb-4">
-                <label className="block">Username</label>
+        <div className="flex h-screen bg-gray-900 text-white">
+            <div className="flex-1 p-5">
+                <h1 className="text-2xl font-bold mb-4">Profile</h1>
+                {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+                <div className="mb-4">
+                    <label className="block">Username</label>
+                    {isEditing ? (
+                        <input
+                            type="text"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="border p-2 text-black"
+                        />
+                    ) : (
+                        <p className="text-lg">{username}</p>
+                    )}
+                </div>
+                <div className="mb-4">
+                    <label className="block">Email</label>
+                    <p className="text-lg">{user?.email}</p>
+                </div>
                 {isEditing ? (
-                    <input
-                        type="text"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        className="border p-2 text-black"
-                    />
+                    <button onClick={handleSave} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save</button>
                 ) : (
-                    <p>{username}</p>
+                    <button onClick={handleEdit} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit Username</button>
                 )}
             </div>
-            <div className="mb-4">
-                <label className="block">Email</label>
-                <p>{user?.email}</p>
-            </div>
-            {isEditing ? (
-                <button onClick={handleSave} className="bg-blue-500 text-white p-2 rounded">Save</button>
-            ) : (
-                <button onClick={handleEdit} className="bg-blue-500 text-white p-2 rounded">Edit Username</button>
-            )}
         </div>
     );
 };

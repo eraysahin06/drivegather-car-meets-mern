@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
-const Vehicle = require('./models/Vehicle/Vehicle'); // Import Vehicle model
+const Vehicle = require('./models/Vehicle/Vehicle');
 const connectDB = require('./db');
 const User = require("./models/User/User");
+const Community = require("./models/Community/Community");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -50,9 +51,11 @@ app.put('/users/:email', async (req, res) => {
         const user = await User.findOneAndUpdate({ email }, { username }, { new: true });
         res.status(200).json(user);
     } catch (error) {
+        console.error('Server error:', error); // Log the error
         res.status(400).json({ message: error.message });
     }
 });
+
 
 
 // Get user's vehicles route
@@ -132,6 +135,35 @@ app.put('/vehicles/:id', async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
+
+// Add community route
+app.post('/communities', async (req, res) => {
+    const { creatorId, creatorUsername, name, type } = req.body;
+    try {
+        const newCommunity = new Community({
+            creatorId,
+            creatorUsername,
+            name,
+            type
+        });
+        await newCommunity.save();
+        res.status(201).json(newCommunity);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
+
+// Get all communities route
+app.get('/communities', async (req, res) => {
+    try {
+        const communities = await Community.find();
+        res.status(200).json(communities);
+    } catch (error) {
+        console.error('Server error:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
+
 
 app.listen(PORT, () => {
     console.log('Server running on port ' + PORT);

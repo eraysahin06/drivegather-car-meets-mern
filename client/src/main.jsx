@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register.jsx";
 import About from "./pages/About/About.jsx";
 import AddVehicle from "./pages/AddVehicle/AddVehicle.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
+import CreateCommunity from "./pages/CreateCommunity/CreateCommunity.jsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "/about", element: <About />},
       { path: "/add-vehicle", element: <AddVehicle /> },
       { path: "/profile", element: <Profile /> },
+      {path: "/create-community", element: <CreateCommunity /> },
     ],
   },
 ]);
