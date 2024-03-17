@@ -17,7 +17,8 @@ const CreateCommunity = () => {
                     creatorId: user._id,
                     creatorUsername: user.username,
                     name,
-                    type
+                    type,
+                    members: [user._id] // Include the creator's ID in the members array
                 });
                 console.log('Community created:', response.data);
                 navigate('/');
@@ -28,6 +29,7 @@ const CreateCommunity = () => {
             console.error('User not found');
         }
     };
+    
 
     return (
         <div className="flex h-screen bg-gray-900 text-white">

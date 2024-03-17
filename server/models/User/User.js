@@ -17,9 +17,12 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    photoURL: String
+    photoURL: String,
+    communities: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Community'
+    }]
 });
-
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;

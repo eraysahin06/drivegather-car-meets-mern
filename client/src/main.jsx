@@ -10,6 +10,7 @@ import About from "./pages/About/About.jsx";
 import AddVehicle from "./pages/AddVehicle/AddVehicle.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import CreateCommunity from "./pages/CreateCommunity/CreateCommunity.jsx";
+import CommunityPage from "./pages/CommunityPage/CommunityPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/add-vehicle", element: <AddVehicle /> },
       { path: "/profile", element: <Profile /> },
       {path: "/create-community", element: <CreateCommunity /> },
+      { path: "/community-page/:id", element: <CommunityPage /> },
     ],
   },
 ]);

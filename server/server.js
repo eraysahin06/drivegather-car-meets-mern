@@ -13,6 +13,23 @@ app.use(cors());
 
 connectDB();
 
+// Get user by ID route
+app.get('/users/id/:userId', async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 // Get user by email route
 app.get('/users/:email', async (req, res) => {
     const { email } = req.params;
@@ -56,6 +73,23 @@ app.put('/users/:email', async (req, res) => {
     }
 });
 
+// Get a specific community by ID
+app.get('/communities/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const community = await Community.findById(id);
+
+        if (!community) {
+            return res.status(404).json({ message: "Community not found" });
+        }
+
+        res.status(200).json(community);
+    } catch (error) {
+        console.error('Server error:', error);
+        res.status(500).json({ message: error.message });
+    }
+});
 
 
 // Get user's vehicles route
@@ -138,13 +172,14 @@ app.put('/vehicles/:id', async (req, res) => {
 
 // Add community route
 app.post('/communities', async (req, res) => {
-    const { creatorId, creatorUsername, name, type } = req.body;
+    const { creatorId, creatorUsername, name, type, members } = req.body;
     try {
         const newCommunity = new Community({
             creatorId,
             creatorUsername,
             name,
-            type
+            type,
+            members: []
         });
         await newCommunity.save();
         res.status(201).json(newCommunity);
@@ -152,6 +187,7 @@ app.post('/communities', async (req, res) => {
         res.status(400).json({ message: error.message });
     }
 });
+
 
 // Get all communities route
 app.get('/communities', async (req, res) => {
