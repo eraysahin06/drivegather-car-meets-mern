@@ -19,7 +19,7 @@ const CommunityCard = ({ community, isCreator }) => {
         }
     };
 
-    const isJoined = user && user.communities && user.communities.includes(community._id);
+    const isJoined = user && user.communities && user.communities.map(community => community.toString()).includes(community._id);
 
     return (
         <Link to={`/community-page/${community._id}`} className="block">

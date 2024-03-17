@@ -225,7 +225,8 @@ app.put('/communities/:id/join', async (req, res) => {
         }
 
         // Check if the user is already a member
-        if (!community.members.includes(userId)) {
+        const memberIds = community.members.map(member => member.toString()); // Convert ObjectId to string
+        if (!memberIds.includes(userId)) {
             community.members.push(userId);
             community.memberCount += 1;
             await community.save();
@@ -237,6 +238,7 @@ app.put('/communities/:id/join', async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 });
+
 
 
 app.listen(PORT, () => {
