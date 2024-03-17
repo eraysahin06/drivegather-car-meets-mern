@@ -170,18 +170,29 @@ app.put('/vehicles/:id', async (req, res) => {
     }
 });
 
-// Add community route
+// Create community route
 app.post('/communities', async (req, res) => {
-    const { creatorId, creatorUsername, name, type, members } = req.body;
+    const { creatorId, creatorUsername, name, type } = req.body;
     try {
         const newCommunity = new Community({
             creatorId,
             creatorUsername,
             name,
             type,
-            members: []
+            members: [creatorId], // Include the creator's ID in the members array
+            memberCount: 1 // Set the initial member count to 1
         });
+
+        // Save the new community
         await newCommunity.save();
+
+        // Update the user's communities array
+        await User.findByIdAndUpdate(
+            creatorId,
+            { $push: { communities: newCommunity._id } }, // Add the new community's ID to the user's communities array
+            { new: true }
+        );
+
         res.status(201).json(newCommunity);
     } catch (error) {
         res.status(400).json({ message: error.message });
