@@ -60,7 +60,7 @@ function App() {
       />
 
       {/* Main content */}
-      <div className="flex-1 p-5">
+      <div className="flex-1 p-8">
         {hasVehicle && vehicle ? (
           <div className="mb-5">
             <h2 className="text-3xl font-semibold mb-4">Vehicle</h2>
