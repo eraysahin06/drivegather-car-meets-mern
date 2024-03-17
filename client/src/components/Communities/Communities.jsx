@@ -13,29 +13,37 @@ const Communities = () => {
     const fetchCommunities = async () => {
       try {
         const response = await axios.get("http://localhost:3000/communities");
-        setCommunities(response.data);
+        const communitiesData = response.data;
+
+        // Check membership for each community
+        const checkedCommunities = await Promise.all(
+          communitiesData.map(async (community) => {
+            const isMemberResponse = await axios.get(
+              `http://localhost:3000/communities/${community._id}/isMember/${user._id}`
+            );
+            return { ...community, isMember: isMemberResponse.data.isMember };
+          })
+        );
+
+        setCommunities(checkedCommunities);
       } catch (error) {
         console.error("Error fetching communities:", error);
       }
     };
 
-    fetchCommunities();
-  }, []);
+    if (user) {
+      fetchCommunities();
+    }
+  }, [user]);
 
-  // Extract community IDs from the user's communities array
-  const userCommunityIds = user
-    ? user.communities.map((community) => community)
-    : [];
-
-  const userCommunities = communities.filter(
-    (community) =>
-      community.creatorId === user?._id ||
-      userCommunityIds.includes(community._id)
+  const createdCommunities = communities.filter(
+    (community) => community.creatorId === user?._id
+  );
+  const joinedCommunities = communities.filter(
+    (community) => community.isMember && community.creatorId !== user?._id
   );
   const otherCommunities = communities.filter(
-    (community) =>
-      community.creatorId !== user?._id &&
-      !userCommunityIds.includes(community._id)
+    (community) => !community.isMember && community.creatorId !== user?._id
   );
 
   return (
@@ -52,21 +60,31 @@ const Communities = () => {
           <FaPlus size={24} />
         </Link>
       </div>
-      <h3 className="text-2xl font-semibold mb-4">Your Communities</h3>
-      {userCommunities.map((community) => (
+      <h3 className="text-2xl font-semibold mb-4">Your Created Communities</h3>
+      {createdCommunities.map((community) => (
         <CommunityCard
           key={community._id}
           community={community}
-          isCreator={community.creatorId === user?._id}
+          isCreator={true}
           isJoined={true}
         />
       ))}
+      <h3 className="text-2xl font-semibold mb-4">Joined Communities</h3>
+      {joinedCommunities.map((community) => (
+        <CommunityCard
+          key={community._id}
+          community={community}
+          isCreator={false}
+          isJoined={true}
+        />
+      ))}
+      <h3 className="text-2xl font-semibold mb-4">Other Communities</h3>
       {otherCommunities.map((community) => (
         <CommunityCard
           key={community._id}
           community={community}
           isCreator={false}
-          isJoined={userCommunityIds.includes(community._id)}
+          isJoined={false}
         />
       ))}
     </div>

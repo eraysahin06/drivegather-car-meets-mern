@@ -50,29 +50,38 @@ export const loginUser = async (email, password) => {
 
 export const signInWithGoogle = async () => {
   try {
-    const result = await signInWithPopup(auth, googleProvider);
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
 
-    // Set firebaseId in User schema
-    const user = result.user;
+      let username = (user.displayName.split(' ')[0] + user.displayName.split(' ')[1] || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
-    // Generate a username by combining the first and last names and converting to lowercase
-    const username = (user.displayName.split(' ')[0] + user.displayName.split(' ')[1] || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      // Check if the username already exists
+      const usernameExistsResponse = await axios.get(`http://localhost:3000/users/username/${username}`);
+      if (usernameExistsResponse.data.exists) {
+          // Modify the username to ensure uniqueness
+          username += Math.floor(Math.random() * 1000);
+      }
 
-    await axios.post('http://localhost:3000/users', {
-      firebaseId: user.uid,
-      displayName: user.displayName,
-      email: user.email,
-      username: username,
-      photoURL: user.photoURL
-    });
+      await axios.post('http://localhost:3000/users', {
+          firebaseId: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+          username: username,
+          photoURL: user.photoURL
+      });
 
-    console.log("User signed in with Google:", result.user);
-    return result.user;
+      console.log("User signed in with Google:", user);
+      return user;
   } catch (error) {
-    console.error("Google sign-in error:", error);
-    throw error;
+      console.error("Google sign-in error:", error);
+      if (error.response) {
+          console.error("Error response data:", error.response.data);
+      }
+      throw error;
   }
 };
+
+
 
 
 onAuthStateChanged(auth, (user) => {

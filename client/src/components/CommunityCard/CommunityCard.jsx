@@ -3,10 +3,27 @@ import { FaUser, FaCheck } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import useGetUser from '../../hooks/useGetUser';
 import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const CommunityCard = ({ community, isCreator }) => {
     const user = useGetUser();
     const navigate = useNavigate();
+    const [isJoined, setIsJoined] = useState(false);
+
+    useEffect(() => {
+        const checkMembership = async () => {
+            if (user) {
+                try {
+                    const response = await axios.get(`http://localhost:3000/communities/${community._id}/isMember/${user._id}`);
+                    setIsJoined(response.data.isMember);
+                } catch (error) {
+                    console.error('Error checking membership:', error);
+                }
+            }
+        };
+
+        checkMembership();
+    }, [user, community._id]);
 
     const joinCommunity = async () => {
         try {
@@ -18,8 +35,6 @@ const CommunityCard = ({ community, isCreator }) => {
             console.error('Error joining community:', error);
         }
     };
-
-    const isJoined = user && user.communities && user.communities.map(community => community.toString()).includes(community._id);
 
     return (
         <Link to={`/community-page/${community._id}`} className="block">
