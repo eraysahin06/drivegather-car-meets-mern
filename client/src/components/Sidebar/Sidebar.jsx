@@ -68,7 +68,7 @@ const Sidebar = ({
                 Explore Car Meets
               </li>
             </Link>
-            <Link to="#">
+            <Link to="/explore-communities">
               <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
                 <FaUsers className="mr-2" />
                 Explore Communities
@@ -98,7 +98,7 @@ const Sidebar = ({
       )}
       <button
         className={`absolute ${
-          isSidebarOpen ? "top-1/2 -right-8" : "top-1/2 -right-11"
+          isSidebarOpen ? "top-1/2 -right-5" : "top-1/2 -right-5"
         } transform -translate-y-1/2 bg-gray-700 hover:bg-gray-600 p-2 rounded-full`}
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
