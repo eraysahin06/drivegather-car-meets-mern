@@ -10,8 +10,25 @@ import axios from "axios";
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const user = useAuth();
+  const [userDetails, setUserDetails] = useState(null);
   const hasVehicle = useHasVehicle();
   const [vehicle, setVehicle] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+        if (user && user.email) {
+            try {
+                const response = await axios.get(`http://localhost:3000/users/${user.email}`);
+                setUserDetails(response.data);
+            } catch (error) {
+                console.error('Error fetching user details:', error);
+            }
+        }
+    };
+
+    fetchUserDetails();
+}, [user]);
+
 
   useEffect(() => {
     const fetchUserVehicle = async () => {
@@ -36,9 +53,9 @@ function App() {
       <Sidebar
         isSidebarOpen={isSidebarOpen}
         setIsSidebarOpen={setIsSidebarOpen}
-        user={user}
+        user={userDetails}
         hasVehicle={hasVehicle}
-        vehicle={vehicle} // Pass the vehicle object to the Sidebar component
+        vehicle={vehicle}
       />
 
       {/* Main content */}
