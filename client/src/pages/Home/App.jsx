@@ -17,30 +17,33 @@ function App() {
 
   useEffect(() => {
     const fetchUserDetails = async () => {
-        if (user && user.email) {
-            try {
-                const response = await axios.get(`http://localhost:3000/users/${user.email}`);
-                setUserDetails(response.data);
-            } catch (error) {
-                console.error('Error fetching user details:', error);
-            }
+      if (user && user.email) {
+        try {
+          const response = await axios.get(
+            `http://localhost:3000/users/${user.email}`
+          );
+          setUserDetails(response.data);
+        } catch (error) {
+          console.error("Error fetching user details:", error);
         }
+      }
     };
 
     fetchUserDetails();
-}, [user]);
-
+  }, [user]);
 
   useEffect(() => {
     const fetchUserVehicle = async () => {
       if (user && user.email) {
         try {
-          const response = await axios.get(`http://localhost:3000/vehicles?userEmail=${user.email}`);
+          const response = await axios.get(
+            `http://localhost:3000/vehicles?userEmail=${user.email}`
+          );
           if (response.data.length > 0) {
             setVehicle(response.data[0]);
           }
         } catch (error) {
-          console.error('Error fetching user vehicle:', error);
+          console.error("Error fetching user vehicle:", error);
         }
       }
     };
@@ -49,7 +52,7 @@ function App() {
   }, [user]);
 
   return (
-    <div className="flex h-screen bg-gray-900 text-white">
+    <div className="flex mim-h-screen bg-gray-900 text-white">
       {/* Sidebar */}
       <Sidebar
         isSidebarOpen={isSidebarOpen}
@@ -74,10 +77,11 @@ function App() {
             >
               <FaPlus size={24} />
             </Link>
-            <h2 className="text-xl font-semibold ml-2">Add your vehicle to join the car meets</h2>
+            <h2 className="text-xl font-semibold ml-2">
+              Add your vehicle to join the car meets
+            </h2>
           </div>
         )}
-
         <Communities />
       </div>
     </div>

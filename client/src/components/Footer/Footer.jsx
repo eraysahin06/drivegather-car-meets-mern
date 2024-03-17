@@ -2,7 +2,7 @@ import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white text-center p-4">
+    <footer className="bg-black text-white text-center p-4 mt-auto">
       <p>&copy; {new Date().getFullYear()} Car Meets. All rights reserved.</p>
       <p>Follow us on social media:</p>
       <div className="flex justify-center gap-4">

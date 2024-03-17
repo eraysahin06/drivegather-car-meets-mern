@@ -60,7 +60,7 @@ const Communities = () => {
           <FaPlus size={24} />
         </Link>
       </div>
-      <h3 className="text-2xl font-semibold mb-4">Your Created Communities</h3>
+      <h3 className="text-2xl font-semibold mb-4">Your Communities</h3>
       {createdCommunities.map((community) => (
         <CommunityCard
           key={community._id}
