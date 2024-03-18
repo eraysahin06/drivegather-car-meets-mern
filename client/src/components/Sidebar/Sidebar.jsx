@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   FaCar,
   FaAngleRight,
@@ -18,6 +18,24 @@ const Sidebar = ({
   hasVehicle,
   vehicle,
 }) => {
+  const navigate = useNavigate();
+
+  const handleAddVehicleClick = () => {
+    if (user) {
+      navigate("/add-vehicle");
+    } else {
+      navigate("/register");
+    }
+  };
+
+  const handleCreateCommunityClick = () => {
+    if (user) {
+      navigate("/create-community");
+    } else {
+      navigate("/register");
+    }
+  };
+
   return (
     <div
       className={`relative ${
@@ -47,19 +65,18 @@ const Sidebar = ({
           )}
 
           {hasVehicle && vehicle ? (
-            <Link to="/add-vehicle">
-              <div className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg hover:bg-gray-900">
-                <FaCar className="text-2xl text-[#4FD1C5] mr-2" />
-                <p className="text-lg">{`${vehicle.year} ${vehicle.make} ${vehicle.model}`}</p>
-              </div>
-            </Link>
+            <div className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg hover:bg-gray-900">
+              <FaCar className="text-2xl text-[#4FD1C5] mr-2" />
+              <p className="text-lg">{`${vehicle.year} ${vehicle.make} ${vehicle.model}`}</p>
+            </div>
           ) : (
-            <Link to="/add-vehicle">
-              <div className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg hover:bg-gray-900">
-                <FaPlus className="text-2xl text-[#4FD1C5] mr-2" />
-                <p className="text-lg">Add Vehicle</p>
-              </div>
-            </Link>
+            <button
+              onClick={handleAddVehicleClick}
+              className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg hover:bg-gray-900 w-full"
+            >
+              <FaPlus className="text-2xl text-[#4FD1C5] mr-2" />
+              <p className="text-lg">Add Vehicle</p>
+            </button>
           )}
           <div className="mt-4">
             <h2 className="text-lg font-semibold text-gray-400">Car Meets</h2>
@@ -87,12 +104,13 @@ const Sidebar = ({
                   Explore Communities
                 </li>
               </Link>
-              <Link to="/create-community">
-                <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-                  <FaUsers className="mr-2" />
-                  Create a Community
-                </li>
-              </Link>
+              <button
+                onClick={handleCreateCommunityClick}
+                className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center w-full text-left"
+              >
+                <FaUsers className="mr-2" />
+                Create a Community
+              </button>
             </ul>
           </div>
           <div className="mt-4">

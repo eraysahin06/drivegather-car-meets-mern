@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import VehicleCard from "../../components/Vehicles/VehicleCard/VehicleCard";
 import Communities from "../../components/Communities/Communities";
@@ -14,6 +14,8 @@ function App() {
   const [userDetails, setUserDetails] = useState(null);
   const hasVehicle = useHasVehicle();
   const [vehicle, setVehicle] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -52,7 +54,7 @@ function App() {
   }, [user]);
 
   return (
-    <div className="flex mim-h-screen bg-gray-900 text-white">
+    <div className="flex min-h-screen bg-gray-900 text-white">
       {/* Sidebar */}
       <Sidebar
         isSidebarOpen={isSidebarOpen}
@@ -71,18 +73,20 @@ function App() {
           </div>
         ) : (
           <div className="flex items-center mb-5">
-            <Link
-              to="/add-vehicle"
-              className="p-4 bg-gray-800 hover:bg-gray-700 rounded-md"
+            <button
+              onClick={() =>
+                user ? navigate("/add-vehicle") : navigate("/register")
+              }
+              className="p-4 bg-gray-800 hover:bg-gray-700 rounded-md flex items-center"
             >
               <FaPlus size={24} />
-            </Link>
-            <h2 className="text-xl font-semibold ml-2">
-              Add your vehicle to join the car meets
-            </h2>
+              <span className="text-xl font-semibold ml-2">
+                Add your vehicle to join the car meets
+              </span>
+            </button>
           </div>
         )}
-        <Communities />
+        <Communities user={user} />
       </div>
     </div>
   );

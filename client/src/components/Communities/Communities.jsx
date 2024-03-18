@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPlus, FaUsers } from "react-icons/fa";
 import CommunityCard from "../CommunityCard/CommunityCard";
 import useGetUser from "../../hooks/useGetUser";
@@ -8,6 +8,7 @@ import useGetUser from "../../hooks/useGetUser";
 const Communities = () => {
   const user = useGetUser();
   const [communities, setCommunities] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCommunities = async () => {
@@ -53,15 +54,19 @@ const Communities = () => {
           <FaUsers className="mt-1" />
           Communities
         </h2>
-        <Link
-          to="/create-community"
-          className="p-2 bg-gray-800 hover:bg-gray-700 rounded-md"
+        <button
+          onClick={() =>
+            user ? navigate("/create-community") : navigate("/register")
+          }
+          className="p-2 bg-gray-800 hover:bg-gray-700 rounded-md flex items-center"
         >
           <FaPlus size={24} />
-        </Link>
+        </button>
       </div>
       <h3 className="text-2xl font-semibold mb-4">Your Communities</h3>
-      {createdCommunities.map((community) => (
+      {user ? (
+        <>
+         {createdCommunities.map((community) => (
         <CommunityCard
           key={community._id}
           community={community}
@@ -87,6 +92,15 @@ const Communities = () => {
           isJoined={false}
         />
       ))}
+        </>
+      ) : (
+        <div className="flex flex-col text-center gap-5">
+         <p className="text-yellow-500 font-semibold">You need to sign in or register to explore communities</p>
+         <Link to="/register" className="bg-gray-700 p-2 font-semibold hover:bg-gray-600">Sign in</Link>
+        </div>
+       
+      )}
+     
     </div>
   );
 };
