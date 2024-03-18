@@ -61,39 +61,51 @@ const Sidebar = ({
               </div>
             </Link>
           )}
-          <ul>
-            <Link to="#">
-              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-                <FaMapMarkedAlt className="mr-2" />
-                Explore Car Meets
-              </li>
-            </Link>
-            <Link to="/explore-communities">
-              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-                <FaUsers className="mr-2" />
-                Explore Communities
-              </li>
-            </Link>
-            <Link to="/create-community">
-              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-                <FaUsers className="mr-2" />
-                Create a Community
-              </li>
-            </Link>
-
-            <Link to="#">
-              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-                <FaCalendarPlus className="mr-2" />
-                Create a Car Meet
-              </li>
-            </Link>
-            <Link to="#">
-              <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
-                <FaCog className="mr-2" />
-                Settings
-              </li>
-            </Link>
-          </ul>
+          <div className="mt-4">
+            <h2 className="text-lg font-semibold text-gray-400">Car Meets</h2>
+            <ul>
+              <Link to="#">
+                <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                  <FaMapMarkedAlt className="mr-2" />
+                  Explore Car Meets
+                </li>
+              </Link>
+              <Link to="#">
+                <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                  <FaCalendarPlus className="mr-2" />
+                  Create a Car Meet
+                </li>
+              </Link>
+            </ul>
+          </div>
+          <div className="mt-4">
+            <h2 className="text-lg font-semibold text-gray-400">Communities</h2>
+            <ul>
+              <Link to="/explore-communities">
+                <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                  <FaUsers className="mr-2" />
+                  Explore Communities
+                </li>
+              </Link>
+              <Link to="/create-community">
+                <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                  <FaUsers className="mr-2" />
+                  Create a Community
+                </li>
+              </Link>
+            </ul>
+          </div>
+          <div className="mt-4">
+            <h2 className="text-lg font-semibold text-gray-400">Settings</h2>
+            <ul>
+              <Link to="#">
+                <li className="my-2 hover:bg-gray-700 p-2 rounded-md flex items-center">
+                  <FaCog className="mr-2" />
+                  Settings
+                </li>
+              </Link>
+            </ul>
+          </div>
         </>
       )}
       <button
