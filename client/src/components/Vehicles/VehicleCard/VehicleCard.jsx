@@ -16,8 +16,14 @@ const VehicleCard = ({ vehicle, onEdit }) => {
     };
 
     const handleUpdateVehicle = async (updatedVehicle) => {
+        console.log("Updated vehicle:", updatedVehicle);
         try {
-            const response = await axios.put(`http://localhost:3000/vehicles/${updatedVehicle._id}`, updatedVehicle);
+            const vehicleData = {
+                make: updatedVehicle.make,
+                model: updatedVehicle.model,
+                year: updatedVehicle.year
+            };
+            const response = await axios.put(`http://localhost:3000/vehicles/${updatedVehicle._id}`, vehicleData);
             setIsEditing(false);
             if (onEdit) {
                 onEdit(response.data);
@@ -27,6 +33,8 @@ const VehicleCard = ({ vehicle, onEdit }) => {
             console.error('Error updating vehicle:', error);
         }
     };
+    
+    
 
     if (!vehicle) {
         return null; // or return a placeholder/loading component
