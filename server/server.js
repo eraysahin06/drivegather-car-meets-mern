@@ -246,11 +246,19 @@ app.put("/communities/:id/join", async (req, res) => {
       return res.status(404).json({ message: "Community or user not found" });
     }
 
-    // Check if the user is already a member
-    const memberIds = community.members.map((member) => member.toString()); // Convert ObjectId to string
-    if (!memberIds.includes(userId)) {
-      community.members.push(userId);
-      community.memberCount += 1;
+
+
+    // Check if the user is already a member or pending member
+    const isMember = community.members.includes(userId);
+    const isPendingMember = community.pendingMembers.includes(userId);
+
+    if (!isMember && !isPendingMember) {
+      if (community.type === "Private") {
+        community.pendingMembers.push(userId);
+      } else {
+        community.members.push(userId);
+        community.memberCount += 1;
+      }
       await community.save();
     }
 
@@ -260,6 +268,56 @@ app.put("/communities/:id/join", async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+
+// Accept join request
+app.put("/communities/:id/accept", async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const community = await Community.findById(id);
+
+    if (!community) {
+      return res.status(404).json({ message: "Community not found" });
+    }
+
+    // Move user from pendingMembers to members
+    community.pendingMembers = community.pendingMembers.filter(memberId => memberId.toString() !== userId);
+    community.members.push(userId);
+    community.memberCount += 1;
+
+    await community.save();
+    res.status(200).json(community);
+  } catch (error) {
+    console.error("Server error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Decline join request
+app.put("/communities/:id/decline", async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  try {
+    const community = await Community.findById(id);
+
+    if (!community) {
+      return res.status(404).json({ message: "Community not found" });
+    }
+
+    // Remove user from pendingMembers
+    community.pendingMembers = community.pendingMembers.filter(memberId => memberId.toString() !== userId);
+
+    await community.save();
+    res.status(200).json(community);
+  } catch (error) {
+    console.error("Server error:", error);
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 // Check if a user is a member of a specific community
 app.get("/communities/:id/isMember/:userId", async (req, res) => {
