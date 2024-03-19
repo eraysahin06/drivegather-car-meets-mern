@@ -45,6 +45,18 @@ const CommunityPage = () => {
     }
   };
 
+  const joinCommunity = async () => {
+    try {
+      await axios.put(
+        `http://localhost:3000/communities/${id}/join`,
+        { userId: user._id }
+      );
+      fetchCommunity(); // Refresh the community data to update the members list
+    } catch (error) {
+      console.error("Error joining community:", error);
+    }
+  };
+
   const declineJoinRequest = async (userId) => {
     try {
       const response = await axios.put(
@@ -77,6 +89,15 @@ const CommunityPage = () => {
       <p className="mb-2">Type: {community.type}</p>
       <p className="mb-2">Creator: {community.creatorUsername}</p>
       <p className="mb-2">Members: {community.memberCount}</p>
+
+      {!isMember && community.type === "Public" && (
+        <button
+          className="bg-green-500 hover:bg-green-600 text-white p-2 rounded mb-4"
+          onClick={joinCommunity}
+        >
+          Join Community
+        </button>
+      )}
 
       <div className="mb-4">
         <h3 className="text-xl font-semibold">Current Members</h3>
