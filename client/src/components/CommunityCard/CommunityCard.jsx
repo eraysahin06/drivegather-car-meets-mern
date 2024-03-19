@@ -38,6 +38,7 @@ const CommunityCard = ({ community, isCreator }) => {
           `http://localhost:3000/communities/${community._id}/join`,
           { userId: user._id }
         );
+        window.location.reload();
       } catch (error) {
         console.error("Error joining community:", error);
       }

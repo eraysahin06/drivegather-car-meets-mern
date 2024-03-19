@@ -4,6 +4,7 @@ const connectDB = require("./db");
 const userRoutes = require("./routes/users");
 const communityRoutes = require("./routes/communities");
 const vehicleRoutes = require("./routes/vehicles");
+const carMeetRoutes = require("./routes/carmeets")
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,7 @@ connectDB();
 app.use("/users", userRoutes);
 app.use("/communities", communityRoutes);
 app.use("/vehicles", vehicleRoutes);
+app.use("/car-meets", carMeetRoutes);
 
 
 
