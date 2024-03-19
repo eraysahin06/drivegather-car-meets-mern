@@ -13,6 +13,7 @@ const CommunityPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const user = useGetUser();
+  const [isPending, setIsPending] = useState(false);
 
   const fetchCommunity = useCallback(async () => {
     setLoading(true);
@@ -21,16 +22,30 @@ const CommunityPage = () => {
         `http://localhost:3000/communities/${id}`
       );
       setCommunity(response.data);
+      setIsPending(response.data.pendingMembers.includes(user?._id));
     } catch (error) {
       setError(error);
     } finally {
       setLoading(false);
     }
-  }, [id]);
+  }, [id, user?._id]);
 
   useEffect(() => {
     fetchCommunity();
   }, [fetchCommunity]);
+
+  const joinCommunity = async () => {
+    try {
+      await axios.put(
+        `http://localhost:3000/communities/${id}/join`,
+        { userId: user._id }
+      );
+      setIsPending(true);
+      fetchCommunity(); // Refresh the community data to update the members list
+    } catch (error) {
+      console.error("Error joining community:", error);
+    }
+  };
 
   const acceptJoinRequest = async (userId) => {
     try {
@@ -42,18 +57,6 @@ const CommunityPage = () => {
       window.location.reload();
     } catch (error) {
       console.error("Error accepting join request:", error);
-    }
-  };
-
-  const joinCommunity = async () => {
-    try {
-      await axios.put(
-        `http://localhost:3000/communities/${id}/join`,
-        { userId: user._id }
-      );
-      fetchCommunity(); // Refresh the community data to update the members list
-    } catch (error) {
-      console.error("Error joining community:", error);
     }
   };
 
@@ -90,12 +93,13 @@ const CommunityPage = () => {
       <p className="mb-2">Creator: {community.creatorUsername}</p>
       <p className="mb-2">Members: {community.memberCount}</p>
 
-      {!isMember && community.type === "Public" && (
+      {!isMember && community.type === "Private" && (
         <button
-          className="bg-green-500 hover:bg-green-600 text-white p-2 rounded mb-4"
-          onClick={joinCommunity}
+          className={`bg-green-500 hover:bg-green-600 text-white p-2 rounded mb-4 ${isPending ? 'cursor-not-allowed bg-yellow-500' : ''}`}
+          onClick={!isPending ? joinCommunity : null}
+          disabled={isPending}
         >
-          Join Community
+          {isPending ? "Requested to Join" : "Request to Join"}
         </button>
       )}
 
