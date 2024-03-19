@@ -58,7 +58,7 @@ const Sidebar = ({
           )}
 
           {hasVehicle && vehicle ? (
-            <div className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg hover:bg-gray-900">
+            <div className="flex items-center justify-center p-4 text-center bg-gray-700 rounded-lg">
               <FaCar className="text-2xl text-[#4FD1C5] mr-2" />
               <p className="text-lg">{`${vehicle.year} ${vehicle.make} ${vehicle.model}`}</p>
             </div>
