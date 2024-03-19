@@ -46,13 +46,6 @@ const Sidebar = ({
         <>
           {user && (
             <div className="text-center mb-5 mt-8 bg-gray-700 rounded-lg py-6">
-              <div className="relative group">
-                <img
-                  className="w-20 h-20 rounded-full mx-auto"
-                  src={user.photoURL || "https://via.placeholder.com/150"}
-                  alt="Profile"
-                />
-              </div>
               <p className="text-lg font-semibold mt-2">
                 {user.username || "User"} {/* Display the username */}
               </p>

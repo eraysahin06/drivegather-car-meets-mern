@@ -55,7 +55,7 @@ router.get("/", async (req, res) => {
       res.status(400).json({ message: error.message });
     }
   });
-  
+
   // Update vehicle route
   router.put("/:id", async (req, res) => {
     const { id } = req.params;

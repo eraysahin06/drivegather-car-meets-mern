@@ -48,7 +48,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed w-full top-0 z-10 transition-colors duration-300 ${isScrolled ? "bg-black" : "bg-gray-800"} text-white px-4 py-2`}>
+    <nav
+      className={`fixed w-full top-0 z-10 transition-colors duration-300 ${
+        isScrolled ? "bg-black" : "bg-gray-800"
+      } text-white px-4 py-2`}
+    >
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <Link to="/" className="text-2xl font-bold" onClick={closeMenu}>
           Car Meets
@@ -66,15 +70,7 @@ const Navbar = () => {
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="flex items-center hover:bg-gray-900 text-white font-bold py-1 px-3 rounded ml-2"
               >
-                {user.photoURL ? (
-                  <img
-                    className="w-8 h-8 rounded-full"
-                    src={user.photoURL}
-                    alt="Profile"
-                  />
-                ) : (
-                  <FaUserCircle size={24} />
-                )}
+                <FaUserCircle size={24} />
               </button>
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 bg-black text-white rounded-md shadow-lg py-1">
@@ -121,10 +117,18 @@ const Navbar = () => {
       </div>
       {isMenuOpen && (
         <div className="md:hidden bg-gray-900 bg-opacity-50 py-2">
-          <Link to="/" className="block px-4 py-2 hover:text-gray-400" onClick={closeMenu}>
+          <Link
+            to="/"
+            className="block px-4 py-2 hover:text-gray-400"
+            onClick={closeMenu}
+          >
             Home
           </Link>
-          <Link to="/about" className="block px-4 py-2 hover:text-gray-400" onClick={closeMenu}>
+          <Link
+            to="/about"
+            className="block px-4 py-2 hover:text-gray-400"
+            onClick={closeMenu}
+          >
             About
           </Link>
           {user ? (
