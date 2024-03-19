@@ -61,7 +61,7 @@ const VehicleCard = ({ vehicle, onEdit }) => {
 
 VehicleCard.propTypes = {
     vehicle: PropTypes.shape({
-        _id: PropTypes.string.isRequired,
+        _id: PropTypes.string,
         make: PropTypes.string.isRequired,
         model: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired

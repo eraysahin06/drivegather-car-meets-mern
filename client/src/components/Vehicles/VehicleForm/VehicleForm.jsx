@@ -2,12 +2,11 @@ import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import carBrands from '../../../data/carBrands';
 
-const VehicleForm = ({ vehicle: initialVehicle, onSubmit, onCancel }) => {
+const VehicleForm = ({ vehicle: initialVehicle, onSubmit }) => {
     const [vehicle, setVehicle] = useState({
         make: '',
         model: '',
-        year: '',
-        _id: ''
+        year: ''
     });
 
     useEffect(() => {
@@ -63,20 +62,17 @@ const VehicleForm = ({ vehicle: initialVehicle, onSubmit, onCancel }) => {
                 </select>
             </div>
             <button type="submit" className="w-full p-2 bg-blue-600 hover:bg-blue-800 rounded-lg font-bold">{initialVehicle ? 'Update Vehicle' : 'Add Vehicle'}</button>
-            {initialVehicle && <button type="button" onClick={onCancel} className="w-full mt-2 p-2 bg-red-600 hover:bg-red-800 rounded-lg font-bold">Cancel</button>}
         </form>
     );
 };
 
 VehicleForm.propTypes = {
     vehicle: PropTypes.shape({
-        _id: PropTypes.string,
         make: PropTypes.string,
         model: PropTypes.string,
         year: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     }),
-    onSubmit: PropTypes.func.isRequired,
-    onCancel: PropTypes.func
+    onSubmit: PropTypes.func.isRequired
 };
 
 export default VehicleForm;

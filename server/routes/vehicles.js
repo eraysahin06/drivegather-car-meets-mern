@@ -31,6 +31,7 @@ router.get("/", async (req, res) => {
   // Add vehicle route
   router.post("/", async (req, res) => {
     const { make, model, year, userEmail } = req.body;
+    console.log("Received data:", req.body);
   
     try {
       // Find the user by email
