@@ -69,6 +69,8 @@ const CommunityPage = () => {
     return <div>Community not found</div>;
   }
 
+  const isMember = community.members.some((memberId) => memberId === user?._id);
+
   return (
     <div className="bg-gray-900 text-white p-8">
       <h2 className="text-3xl font-semibold mb-4">{community.name}</h2>
@@ -123,10 +125,14 @@ const CommunityPage = () => {
                 />
               </div>
             )}
-            <CarMeets communityId={id} />
           </div>
         </div>
       )}
+      <CarMeets
+        communityId={id}
+        communityType={community.type}
+        isMember={isMember}
+      />
     </div>
   );
 };

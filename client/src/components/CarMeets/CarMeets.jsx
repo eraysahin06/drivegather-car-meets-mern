@@ -2,22 +2,34 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-const CarMeets = ({ communityId }) => {
+const CarMeets = ({ communityId, communityType, isMember }) => {
   const [carMeets, setCarMeets] = useState([]);
 
   useEffect(() => {
     const fetchCarMeets = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/car-meets/${communityId}/car-meets`);
-
         setCarMeets(response.data);
       } catch (error) {
         console.error("Error fetching Car Meets:", error);
       }
     };
 
-    fetchCarMeets();
-  }, [communityId]);
+    if (communityType === "Public" || isMember) {
+      fetchCarMeets();
+    }
+  }, [communityId, communityType, isMember]);
+
+  if (communityType === "Private" && !isMember) {
+    return (
+      <div className="mt-8">
+        <h3 className="text-2xl font-semibold mb-4">Car Meets</h3>
+        <p className="text-gray-500">
+          You need to join the community to see the car meets in this community.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-8">
@@ -38,6 +50,8 @@ const CarMeets = ({ communityId }) => {
 
 CarMeets.propTypes = {
   communityId: PropTypes.string.isRequired,
+  communityType: PropTypes.string.isRequired,
+  isMember: PropTypes.bool.isRequired,
 };
 
 export default CarMeets;
