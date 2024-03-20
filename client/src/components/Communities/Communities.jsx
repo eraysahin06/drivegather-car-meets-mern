@@ -65,7 +65,7 @@ const Communities = () => {
       </div>
       {createdCommunities.length > 0 && (
         <>
-          <h3 className="text-2xl font-semibold mb-4">Your Communities</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-yellow-500">Your Communities</h3>
           {createdCommunities.map((community) => (
             <CommunityCard
               key={community._id}
@@ -78,7 +78,7 @@ const Communities = () => {
       )}
       {joinedCommunities.length > 0 && (
         <>
-          <h3 className="text-2xl font-semibold mb-4">Joined Communities</h3>
+          <h3 className="text-2xl font-semibold mb-4 text-green-500">Joined Communities</h3>
           {joinedCommunities.map((community) => (
             <CommunityCard
               key={community._id}
@@ -89,7 +89,7 @@ const Communities = () => {
           ))}
         </>
       )}
-      <h3 className="text-2xl font-semibold mb-4">All Communities</h3>
+      <h3 className="text-2xl font-semibold mb-4 text-blue-500">All Communities</h3>
       {user && otherCommunities.length > 0 ? (
         otherCommunities.map((community) => (
           <CommunityCard

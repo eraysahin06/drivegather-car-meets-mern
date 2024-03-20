@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaPlus } from "react-icons/fa";
+import { FaPlus, FaCar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../../components/UI/Sidebar/Sidebar";
 import VehicleCard from "../../components/Vehicles/VehicleCard/VehicleCard";
@@ -68,7 +68,7 @@ function App() {
       <div className="flex-1 p-8">
         {hasVehicle && vehicle ? (
           <div className="mb-5">
-            <h2 className="text-3xl font-semibold mb-4">Vehicle</h2>
+            <h2 className="text-3xl font-semibold mb-4 flex items-center justify-center text-center gap-2"><FaCar /><span>Vehicle</span></h2>
             <VehicleCard vehicle={vehicle} />
           </div>
         ) : (
