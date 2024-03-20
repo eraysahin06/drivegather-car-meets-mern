@@ -47,6 +47,18 @@ const CommunityPage = () => {
     }
   };
 
+  const cancelJoinRequest = async () => {
+    try {
+      await axios.put(`http://localhost:3000/communities/${id}/cancel`, {
+        userId: user._id,
+      });
+      setIsPending(false);
+      fetchCommunity(); // Refresh the community data to update the members list
+    } catch (error) {
+      console.error("Error cancelling join request:", error);
+    }
+  };
+
   const leaveCommunity = async () => {
     try {
       await axios.put(`http://localhost:3000/communities/${id}/leave`, {
@@ -90,7 +102,7 @@ const CommunityPage = () => {
     if (confirmDelete) {
       try {
         await axios.delete(`http://localhost:3000/communities/${id}`);
-        navigate('/')
+        navigate("/");
       } catch (error) {
         console.error("Error deleting community:", error);
       }
@@ -119,15 +131,27 @@ const CommunityPage = () => {
       <p className="mb-2">Members: {community.memberCount}</p>
 
       {!isMember && community.type === "Private" && (
-        <button
-          className={`bg-green-500 hover:bg-green-600 text-white p-2 rounded mb-4 ${
-            isPending ? "cursor-not-allowed bg-yellow-500 hover:bg-yellow-500" : ""
-          }`}
-          onClick={!isPending ? joinCommunity : null}
-          disabled={isPending}
-        >
-          {isPending ? "Requested to Join" : "Request to Join"}
-        </button>
+        <div className="mb-4">
+          <button
+            className={`bg-green-500 hover:bg-green-600 text-white p-2 rounded ${
+              isPending
+                ? "cursor-not-allowed bg-yellow-500 hover:bg-yellow-500"
+                : ""
+            }`}
+            onClick={!isPending ? joinCommunity : null}
+            disabled={isPending}
+          >
+            {isPending ? "Requested to Join" : "Request to Join"}
+          </button>
+          {isPending && (
+            <button
+              className="bg-red-500 hover:bg-red-600 text-white p-2 rounded ml-2"
+              onClick={cancelJoinRequest}
+            >
+              Cancel Request
+            </button>
+          )}
+        </div>
       )}
       {isMember && user._id !== community.creatorId && (
         <button

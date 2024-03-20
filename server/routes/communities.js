@@ -214,4 +214,27 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// Cancel join request
+router.put('/:id/cancel', async (req, res) => {
+  const { id } = req.params;
+  const { userId } = req.body;
+
+  try {
+      const community = await Community.findById(id);
+      if (!community) {
+          return res.status(404).json({ message: 'Community not found' });
+      }
+
+      // Remove user from pendingMembers
+      community.pendingMembers = community.pendingMembers.filter(memberId => memberId.toString() !== userId);
+
+      await community.save();
+      res.status(200).json(community);
+  } catch (error) {
+      console.error('Server error:', error);
+      res.status(500).json({ message: error.message });
+  }
+});
+
+
 module.exports = router;
