@@ -128,7 +128,6 @@ const CommunityPage = () => {
       <h2 className="text-3xl font-semibold mb-4">{community.name}</h2>
       <p className="mb-2">Type: {community.type}</p>
       <p className="mb-2">Creator: {community.creatorUsername}</p>
-      <p className="mb-2">Members: {community.memberCount}</p>
 
       {!isMember && community.type === "Private" && (
         <div className="mb-4">
@@ -162,14 +161,15 @@ const CommunityPage = () => {
         </button>
       )}
 
-      <div className="mb-4">
-        <h3 className="text-xl font-semibold">Current Members</h3>
-        <div className="flex flex-col">
-          {community.members.map((memberId) => (
-            <AttendeeMemberCard key={memberId} memberId={memberId} />
-          ))}
-        </div>
-      </div>
+<div className="mb-4">
+  <h3 className="text-xl font-semibold">Current Members ({community.memberCount})</h3>
+  <div className="flex flex-wrap justify-center">
+    {community.members.map((memberId) => (
+      <AttendeeMemberCard key={memberId} memberId={memberId} />
+    ))}
+  </div>
+</div>
+
 
       {user && user._id === community.creatorId && (
         <div>

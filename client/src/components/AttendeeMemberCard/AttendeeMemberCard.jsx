@@ -16,9 +16,9 @@ const AttendeeMemberCard = ({ memberId }) => {
       const vehicleResponse = await axios.get(
         `http://localhost:3000/vehicles?userEmail=${memberData.email}`
       );
-      const vehicleData = vehicleResponse.data;
+      const vehicleData = vehicleResponse.data[0]; // Assuming only one vehicle
 
-      setMember({ ...memberData, vehicles: vehicleData });
+      setMember({ ...memberData, vehicle: vehicleData });
     };
 
     fetchMember();
@@ -29,24 +29,18 @@ const AttendeeMemberCard = ({ memberId }) => {
   }
 
   return (
-    <div className="flex items-center justify-between mb-4 bg-gray-800 p-4 rounded-lg shadow-md border border-gray-700 hover:bg-gray-700 transition-colors">
-      <div className="flex items-center">
-        <img
-          src={member.photoURL}
-          alt={member.username}
-          className="w-12 h-12 rounded-full mr-4"
-        />
-        <div>
-          <p className="font-semibold text-lg">{member.username}</p>
-        </div>
-      </div>
-      <div>
-        {member.vehicles.map((vehicle) => (
-          <p key={vehicle._id} className="text-sm text-gray-400">
-            {vehicle.make} {vehicle.model} ({vehicle.year})
-          </p>
-        ))}
-      </div>
+    <div className="flex flex-col items-center mb-4 bg-gray-800 p-2 rounded-lg shadow-md border border-gray-700 hover:bg-gray-700 transition-colors w-1/6 min-w-[150px] mx-2">
+      <img
+        src={member.photoURL}
+        alt={member.username}
+        className="w-16 h-16 rounded-full mb-2"
+      />
+      <p className="font-semibold text-sm">{member.username}</p>
+      {member.vehicle && (
+        <p className="text-xs text-gray-400">
+          {member.vehicle.make} {member.vehicle.model} ({member.vehicle.year})
+        </p>
+      )}
     </div>
   );
 };
