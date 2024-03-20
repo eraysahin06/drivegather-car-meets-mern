@@ -63,44 +63,59 @@ const Communities = () => {
           <FaPlus size={24} />
         </button>
       </div>
-      <h3 className="text-2xl font-semibold mb-4">Your Communities</h3>
-      {user ? (
+      {createdCommunities.length > 0 && (
         <>
-         {createdCommunities.map((community) => (
-        <CommunityCard
-          key={community._id}
-          community={community}
-          isCreator={true}
-          isJoined={true}
-        />
-      ))}
-      <h3 className="text-2xl font-semibold mb-4">Joined Communities</h3>
-      {joinedCommunities.map((community) => (
-        <CommunityCard
-          key={community._id}
-          community={community}
-          isCreator={false}
-          isJoined={true}
-        />
-      ))}
-      <h3 className="text-2xl font-semibold mb-4">Other Communities</h3>
-      {otherCommunities.map((community) => (
-        <CommunityCard
-          key={community._id}
-          community={community}
-          isCreator={false}
-          isJoined={false}
-        />
-      ))}
+          <h3 className="text-2xl font-semibold mb-4">Your Communities</h3>
+          {createdCommunities.map((community) => (
+            <CommunityCard
+              key={community._id}
+              community={community}
+              isCreator={true}
+              isJoined={true}
+            />
+          ))}
         </>
-      ) : (
-        <div className="flex flex-col text-center gap-5">
-         <p className="text-yellow-500 font-semibold">You need to sign in or register to explore communities</p>
-         <Link to="/register" className="bg-gray-700 p-2 font-semibold hover:bg-gray-600">Sign in</Link>
-        </div>
-       
       )}
-     
+      {joinedCommunities.length > 0 && (
+        <>
+          <h3 className="text-2xl font-semibold mb-4">Joined Communities</h3>
+          {joinedCommunities.map((community) => (
+            <CommunityCard
+              key={community._id}
+              community={community}
+              isCreator={false}
+              isJoined={true}
+            />
+          ))}
+        </>
+      )}
+      <h3 className="text-2xl font-semibold mb-4">All Communities</h3>
+      {user && otherCommunities.length > 0 ? (
+        otherCommunities.map((community) => (
+          <CommunityCard
+            key={community._id}
+            community={community}
+            isCreator={false}
+            isJoined={false}
+          />
+        ))
+      ) : (
+        <div className="text-center">
+          <p className="text-gray-500 mb-4">
+            {user
+              ? "You have joined all available communities."
+              : "Sign in to explore communities."}
+          </p>
+          {!user && (
+            <Link
+              to="/register"
+              className="bg-gray-700 text-white p-2 rounded hover:bg-gray-600"
+            >
+              Explore Communities
+            </Link>
+          )}
+        </div>
+      )}
     </div>
   );
 };

@@ -121,7 +121,7 @@ const CommunityPage = () => {
       {!isMember && community.type === "Private" && (
         <button
           className={`bg-green-500 hover:bg-green-600 text-white p-2 rounded mb-4 ${
-            isPending ? "cursor-not-allowed bg-yellow-500" : ""
+            isPending ? "cursor-not-allowed bg-yellow-500 hover:bg-yellow-500" : ""
           }`}
           onClick={!isPending ? joinCommunity : null}
           disabled={isPending}
