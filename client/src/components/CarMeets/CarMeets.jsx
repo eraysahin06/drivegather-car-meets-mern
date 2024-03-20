@@ -37,7 +37,7 @@ const CarMeets = ({ communityId, communityType, isMember }) => {
       <div className="flex flex-col">
         {carMeets.map((carMeet) => (
           <div key={carMeet._id} className="bg-gray-800 p-4 mb-4 rounded-md">
-            <h4 className="text-xl font-semibold">{carMeet.name}</h4>
+            <h4 className="text-xl font-semibold text-yellow-500">{carMeet.name}</h4>
             <p>{carMeet.description}</p>
             <p>Location: {carMeet.location}</p>
             <p>Date: {new Date(carMeet.date).toLocaleDateString()}</p>
