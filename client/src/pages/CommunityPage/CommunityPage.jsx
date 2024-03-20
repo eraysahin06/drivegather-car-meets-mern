@@ -36,14 +36,24 @@ const CommunityPage = () => {
 
   const joinCommunity = async () => {
     try {
-      await axios.put(
-        `http://localhost:3000/communities/${id}/join`,
-        { userId: user._id }
-      );
+      await axios.put(`http://localhost:3000/communities/${id}/join`, {
+        userId: user._id,
+      });
       setIsPending(true);
       fetchCommunity(); // Refresh the community data to update the members list
     } catch (error) {
       console.error("Error joining community:", error);
+    }
+  };
+
+  const leaveCommunity = async () => {
+    try {
+      await axios.put(`http://localhost:3000/communities/${id}/leave`, {
+        userId: user._id,
+      });
+      fetchCommunity(); // Refresh the community data to update the members list
+    } catch (error) {
+      console.error("Error leaving community:", error);
     }
   };
 
@@ -95,11 +105,21 @@ const CommunityPage = () => {
 
       {!isMember && community.type === "Private" && (
         <button
-          className={`bg-green-500 hover:bg-green-600 text-white p-2 rounded mb-4 ${isPending ? 'cursor-not-allowed bg-yellow-500' : ''}`}
+          className={`bg-green-500 hover:bg-green-600 text-white p-2 rounded mb-4 ${
+            isPending ? "cursor-not-allowed bg-yellow-500" : ""
+          }`}
           onClick={!isPending ? joinCommunity : null}
           disabled={isPending}
         >
           {isPending ? "Requested to Join" : "Request to Join"}
+        </button>
+      )}
+      {isMember && user._id !== community.creatorId && (
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white p-2 rounded mb-4"
+          onClick={leaveCommunity}
+        >
+          Leave Community
         </button>
       )}
 
