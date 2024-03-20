@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaPlus } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/UI/Sidebar/Sidebar";
 import VehicleCard from "../../components/Vehicles/VehicleCard/VehicleCard";
 import Communities from "../../components/Communities/Communities";
 import { useAuth } from "../../hooks/useAuth";
