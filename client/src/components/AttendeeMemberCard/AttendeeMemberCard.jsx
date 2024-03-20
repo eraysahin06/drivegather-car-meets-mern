@@ -29,7 +29,7 @@ const AttendeeMemberCard = ({ memberId }) => {
   }
 
   return (
-    <div className="flex flex-col items-center mb-4 bg-gray-800 p-2 rounded-lg shadow-md border border-gray-700 hover:bg-gray-700 transition-colors w-1/6 min-w-[150px] mx-2">
+    <div className="flex flex-col items-center my-8 bg-gray-800 p-2 rounded-lg shadow-md border border-gray-700 hover:bg-gray-700 transition-colors w-1/6 min-w-[150px] mx-2">
       <img
         src={member.photoURL}
         alt={member.username}
