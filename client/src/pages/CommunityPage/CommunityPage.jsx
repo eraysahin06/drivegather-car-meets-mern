@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useGetUser from "../../hooks/useGetUser";
 import CreateCarMeetForm from "../../components/CreateCarMeetForm/CreateCarMeetForm";
 import { useCallback } from "react";
@@ -14,6 +14,7 @@ const CommunityPage = () => {
   const [error, setError] = useState(null);
   const user = useGetUser();
   const [isPending, setIsPending] = useState(false);
+  const navigate = useNavigate();
 
   const fetchCommunity = useCallback(async () => {
     setLoading(true);
@@ -79,6 +80,20 @@ const CommunityPage = () => {
       setCommunity(response.data);
     } catch (error) {
       console.error("Error declining join request:", error);
+    }
+  };
+
+  const deleteCommunity = async () => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this community?"
+    );
+    if (confirmDelete) {
+      try {
+        await axios.delete(`http://localhost:3000/communities/${id}`);
+        navigate('/')
+      } catch (error) {
+        console.error("Error deleting community:", error);
+      }
     }
   };
 
@@ -178,6 +193,14 @@ const CommunityPage = () => {
         communityType={community.type}
         isMember={isMember}
       />
+      {user && user._id === community.creatorId && (
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white p-2 rounded mb-4"
+          onClick={deleteCommunity}
+        >
+          Delete Community
+        </button>
+      )}
     </div>
   );
 };

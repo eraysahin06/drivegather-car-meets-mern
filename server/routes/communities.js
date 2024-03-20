@@ -193,4 +193,25 @@ router.put("/:id/leave", async (req, res) => {
   }
 });
 
+
+// Delete a community
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+      const community = await Community.findById(id);
+      if (!community) {
+          return res.status(404).json({ message: 'Community not found' });
+      }
+
+      // Delete the community
+      await Community.findByIdAndDelete(id);
+
+      res.status(200).json({ message: 'Community deleted successfully' });
+  } catch (error) {
+      console.error('Server error:', error);
+      res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = router;
