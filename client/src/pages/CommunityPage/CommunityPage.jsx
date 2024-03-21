@@ -127,7 +127,7 @@ const CommunityPage = () => {
   const isMember = community.members.some((memberId) => memberId === user?._id);
 
   return (
-    <div className="bg-gray-900 text-white p-8">
+    <div className="bg-white text-black p-8">
       <div className="mb-4">
         <CommunityHeader community={community} />
       </div>
