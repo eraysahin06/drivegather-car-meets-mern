@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { FaUser, FaCheck } from "react-icons/fa";
+import { FaUser, FaCheck, FaUsers } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useGetUser from "../../hooks/useGetUser";
 import axios from "axios";
@@ -48,36 +48,49 @@ const CommunityCard = ({ community, isCreator }) => {
   return (
     <Link
       to={`/community-page/${community._id}`}
-      className="block bg-gray-800 rounded-md p-4 mb-4 relative"
+      className="flex flex-col bg-white rounded-lg border-2 shadow-md transition-shadow hover:shadow-xl w-full max-w-xs"
     >
-      <h3 className="text-xl font-bold">
-        {isCreator && <FaUser className="p-1" title="Created by you" />}
-        {community.name}
-      </h3>
-      <p>Type: {community.type}</p>
-      <p>Creator: {community.creatorUsername}</p>
-      <p>Members: {community.memberCount}</p>
-      {!isCreator &&
-        (isJoined ? (
-          <div className="absolute bottom-2 right-2 bg-green-500 text-white p-2 rounded flex items-center">
-            <FaCheck className="mr-1" /> Joined
-          </div>
-        ) : isPending ? (
-          <div className="absolute bottom-2 right-2 bg-yellow-500 text-white p-2 rounded flex items-center">
-            Request Pending
-          </div>
-        ) : (
-          <button
-            className="absolute bottom-2 right-2 bg-green-500 hover:bg-green-600 text-white p-2 rounded"
-            onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              joinCommunity();
-            }}
-          >
-            Join
-          </button>
-        ))}
+      <div className="p-4 bg-gray-100">
+        <h3 className="text-xl font-bold text-gray-800">
+          {isCreator && (
+            <FaUser
+              className="inline mr-2 text-blue-500"
+              title="Created by you"
+            />
+          )}
+          {community.name}
+        </h3>
+        <p className="text-sm text-gray-600">Type: {community.type}</p>
+        <p className="text-sm text-gray-600">
+          Creator: {community.creatorUsername}
+        </p>
+      </div>
+      <div className="flex-grow p-4 flex flex-col justify-between">
+        <div className="flex items-center text-gray-700">
+          <FaUsers className="text-lg" />
+          <span className="text-lg ml-2">{community.memberCount} Members</span>
+        </div>
+        {!isCreator &&
+          (isJoined ? (
+            <span className="mt-4 text-green-500 flex items-center justify-center">
+              <FaCheck className="mr-1" /> Joined
+            </span>
+          ) : isPending ? (
+            <span className="mt-4 text-yellow-500 flex items-center justify-center">
+              Request Pending
+            </span>
+          ) : (
+            <button
+              className="mt-4 bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded transition-all duration-200"
+              onClick={(e) => {
+                e.preventDefault();
+                joinCommunity();
+              }}
+            >
+              Join
+            </button>
+          ))}
+      </div>
     </Link>
   );
 };
