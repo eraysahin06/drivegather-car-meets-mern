@@ -23,7 +23,7 @@ const VehicleCard = ({ vehicle, onEdit }) => {
                 model: updatedVehicle.model,
                 year: updatedVehicle.year
             };
-            const response = await axios.put(`http://localhost:3000/vehicles/${updatedVehicle._id}`, vehicleData);
+            const response = await axios.put(`${import.meta.env.VITE_HOST}/vehicles/${updatedVehicle._id}`, vehicleData);
             setIsEditing(false);
             if (onEdit) {
                 onEdit(response.data);

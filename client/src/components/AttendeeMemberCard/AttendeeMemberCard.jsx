@@ -8,13 +8,13 @@ const AttendeeMemberCard = ({ memberId }) => {
   useEffect(() => {
     const fetchMember = async () => {
       const response = await axios.get(
-        `http://localhost:3000/users/id/${memberId}`
+        `${import.meta.env.VITE_HOST}/users/id/${memberId}`
       );
       const memberData = response.data;
 
       // Fetch vehicle details for the member
       const vehicleResponse = await axios.get(
-        `http://localhost:3000/vehicles?userEmail=${memberData.email}`
+        `${import.meta.env.VITE_HOST}/vehicles?userEmail=${memberData.email}`
       );
       const vehicleData = vehicleResponse.data[0]; // Assuming only one vehicle
 

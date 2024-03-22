@@ -23,7 +23,7 @@ const CommunityPage = () => {
     setLoading(true);
     try {
       const response = await axios.get(
-        `http://localhost:3000/communities/${id}`
+        `${import.meta.env.VITE_HOST}/communities/${id}`
       );
       setCommunity(response.data);
       setIsPending(response.data.pendingMembers.includes(user?._id));
@@ -40,7 +40,7 @@ const CommunityPage = () => {
 
   const joinCommunity = async () => {
     try {
-      await axios.put(`http://localhost:3000/communities/${id}/join`, {
+      await axios.put(`${import.meta.env.VITE_HOST}/communities/${id}/join`, {
         userId: user._id,
       });
       setIsPending(true);
@@ -52,7 +52,7 @@ const CommunityPage = () => {
 
   const cancelJoinRequest = async () => {
     try {
-      await axios.put(`http://localhost:3000/communities/${id}/cancel`, {
+      await axios.put(`${import.meta.env.VITE_HOST}/communities/${id}/cancel`, {
         userId: user._id,
       });
       setIsPending(false);
@@ -64,7 +64,7 @@ const CommunityPage = () => {
 
   const leaveCommunity = async () => {
     try {
-      await axios.put(`http://localhost:3000/communities/${id}/leave`, {
+      await axios.put(`${import.meta.env.VITE_HOST}/communities/${id}/leave`, {
         userId: user._id,
       });
       fetchCommunity(); // Refresh the community data to update the members list
@@ -76,7 +76,7 @@ const CommunityPage = () => {
   const acceptJoinRequest = async (userId) => {
     try {
       const response = await axios.put(
-        `http://localhost:3000/communities/${id}/accept`,
+        `${import.meta.env.VITE_HOST}/communities/${id}/accept`,
         { userId }
       );
       setCommunity(response.data);
@@ -89,7 +89,7 @@ const CommunityPage = () => {
   const declineJoinRequest = async (userId) => {
     try {
       const response = await axios.put(
-        `http://localhost:3000/communities/${id}/decline`,
+        `${import.meta.env.VITE_HOST}/communities/${id}/decline`,
         { userId }
       );
       setCommunity(response.data);
@@ -104,7 +104,7 @@ const CommunityPage = () => {
     );
     if (confirmDelete) {
       try {
-        await axios.delete(`http://localhost:3000/communities/${id}`);
+        await axios.delete(`${import.meta.env.VITE_HOST}/communities/${id}`);
         navigate("/");
       } catch (error) {
         console.error("Error deleting community:", error);

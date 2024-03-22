@@ -12,7 +12,7 @@ const Profile = () => {
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/users/${authUser.email}`);
+                const response = await axios.get(`${import.meta.env.VITE_HOST}/users/${authUser.email}`);
                 setUser(response.data);
                 setUsername(response.data.username || '');
             } catch (error) {
@@ -32,7 +32,7 @@ const Profile = () => {
 
     const handleSave = async () => {
         try {
-            const response = await axios.put(`http://localhost:3000/users/${user.email}`, {
+            const response = await axios.put(`${import.meta.env.VITE_HOST}/users/${user.email}`, {
                 username
             });
             if (response.data) {

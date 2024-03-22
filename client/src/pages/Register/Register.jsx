@@ -32,7 +32,7 @@ const Register = () => {
       if (user) {
         console.log("Registered user:", user.displayName || "User");
         // Add or update user in the database
-        await axios.post("http://localhost:3000/users", {
+        await axios.post(`${import.meta.env.VITE_HOST}/users`, {
           firebaseId: user.uid,
           displayName: user.displayName,
           username: username,

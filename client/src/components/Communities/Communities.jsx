@@ -13,14 +13,14 @@ const Communities = () => {
   useEffect(() => {
     const fetchCommunities = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/communities");
+        const response = await axios.get(`${import.meta.env.VITE_HOST}/communities`);
         const communitiesData = response.data;
 
         // Check membership for each community
         const checkedCommunities = await Promise.all(
           communitiesData.map(async (community) => {
             const isMemberResponse = await axios.get(
-              `http://localhost:3000/communities/${community._id}/isMember/${user._id}`
+              `${import.meta.env.VITE_HOST}/communities/${community._id}/isMember/${user._id}`
             );
             return { ...community, isMember: isMemberResponse.data.isMember };
           })

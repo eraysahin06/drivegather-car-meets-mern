@@ -10,7 +10,7 @@ export const useHasVehicle = () => {
     const fetchUserVehicles = async () => {
       if (user && user.email) {
         try {
-          const response = await axios.get(`http://localhost:3000/vehicles?userEmail=${user.email}`);
+          const response = await axios.get(`${import.meta.env.VITE_HOST}/vehicles?userEmail=${user.email}`);
           setHasVehicle(response.data.length > 0);
         } catch (error) {
           console.error('Error fetching user vehicles:', error);

@@ -13,7 +13,7 @@ const AddVehicle = () => {
       if (user && user.email) {
         try {
           const response = await axios.get(
-            `http://localhost:3000/vehicles?userEmail=${user.email}`
+            `${import.meta.env.VITE_HOST}/vehicles?userEmail=${user.email}`
           );
           setUserVehicles(response.data);
         } catch (error) {
@@ -30,7 +30,7 @@ const AddVehicle = () => {
   const handleSubmit = async (vehicle) => {
     try {
       const data = { ...vehicle, userEmail: user.email };
-      await axios.post("http://localhost:3000/vehicles", data);
+      await axios.post(`${import.meta.env.VITE_HOST}/vehicles`, data);
       alert("Vehicle added successfully!");
       setUserVehicles([...userVehicles, data]);
     } catch (error) {

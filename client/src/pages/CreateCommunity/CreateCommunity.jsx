@@ -13,7 +13,7 @@ const CreateCommunity = () => {
         event.preventDefault();
         if (user && user._id && user.username) {
             try {
-                const response = await axios.post('http://localhost:3000/communities', {
+                const response = await axios.post(`${import.meta.env.VITE_HOST}/communities`, {
                     creatorId: user._id,
                     creatorUsername: user.username,
                     name,

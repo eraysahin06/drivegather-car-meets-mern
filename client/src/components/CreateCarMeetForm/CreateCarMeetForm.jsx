@@ -12,7 +12,7 @@ const CreateCarMeetForm = ({ communityId, creatorId, fetchCommunity }) => {
     event.preventDefault();
     try {
       await axios.post(
-        `http://localhost:3000/car-meets/${communityId}/car-meets`,
+        `${import.meta.env.VITE_HOST}/car-meets/${communityId}/car-meets`,
         {
           creatorId,
           name,

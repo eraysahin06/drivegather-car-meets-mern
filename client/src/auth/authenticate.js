@@ -21,7 +21,7 @@ export const registerUser = async (name, username, email, password) => {
     });
 
     const user = userCredential.user;
-    await axios.post('http://localhost:3000/users', {
+    await axios.post(`${import.meta.env.VITE_HOST}/users`, {
       firebaseId: user.uid,
       displayName: user.displayName,
       username: username, // Include the username here
@@ -56,13 +56,13 @@ export const signInWithGoogle = async () => {
       let username = (user.displayName.split(' ')[0] + user.displayName.split(' ')[1] || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
       // Check if the username already exists
-      const usernameExistsResponse = await axios.get(`http://localhost:3000/users/username/${username}`);
+      const usernameExistsResponse = await axios.get(`${import.meta.env.VITE_HOST}/users/username/${username}`);
       if (usernameExistsResponse.data.exists) {
           // Modify the username to ensure uniqueness
           username += Math.floor(Math.random() * 1000);
       }
 
-      await axios.post('http://localhost:3000/users', {
+      await axios.post(`${import.meta.env.VITE_HOST}/users`, {
           firebaseId: user.uid,
           displayName: user.displayName,
           email: user.email,

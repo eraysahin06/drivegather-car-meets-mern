@@ -18,7 +18,7 @@ function App() {
       if (user && user.email) {
         try {
           const response = await axios.get(
-            `http://localhost:3000/users/${user.email}`
+            `${import.meta.env.VITE_HOST}/users/${user.email}`
           );
           setUserDetails(response.data);
         } catch (error) {
@@ -35,7 +35,7 @@ function App() {
       if (user && user.email) {
         try {
           const response = await axios.get(
-            `http://localhost:3000/vehicles?userEmail=${user.email}`
+            `${import.meta.env.VITE_HOST}/vehicles?userEmail=${user.email}`
           );
           if (response.data.length > 0) {
             setVehicle(response.data[0]);

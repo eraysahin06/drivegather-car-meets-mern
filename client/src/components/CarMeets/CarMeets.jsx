@@ -9,7 +9,7 @@ const CarMeets = ({ communityId, communityType, isMember }) => {
     const fetchCarMeets = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3000/car-meets/${communityId}/car-meets`
+          `${import.meta.env.VITE_HOST}/car-meets/${communityId}/car-meets`
         );
         setCarMeets(response.data);
       } catch (error) {

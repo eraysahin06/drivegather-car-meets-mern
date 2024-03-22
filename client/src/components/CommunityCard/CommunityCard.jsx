@@ -16,7 +16,7 @@ const CommunityCard = ({ community, isCreator }) => {
       if (user) {
         try {
           const response = await axios.get(
-            `http://localhost:3000/communities/${community._id}/isMember/${user._id}`
+            `${import.meta.env.VITE_HOST}/communities/${community._id}/isMember/${user._id}`
           );
           setIsJoined(response.data.isMember);
           setIsPending(community.pendingMembers.includes(user._id));
@@ -35,7 +35,7 @@ const CommunityCard = ({ community, isCreator }) => {
     } else {
       try {
         await axios.put(
-          `http://localhost:3000/communities/${community._id}/join`,
+          `${import.meta.env.VITE_HOST}/communities/${community._id}/join`,
           { userId: user._id }
         );
         window.location.reload();

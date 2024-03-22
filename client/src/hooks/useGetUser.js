@@ -10,7 +10,7 @@ const useGetUser = () => {
         const fetchUserDetails = async () => {
             if (authUser && authUser.email) {
                 try {
-                    const response = await axios.get(`http://localhost:3000/users/${authUser.email}`);
+                    const response = await axios.get(`${import.meta.env.VITE_HOST}/users/${authUser.email}`);
                     setUserDetails(response.data);
                 } catch (error) {
                     console.error('Error fetching user details:', error);
