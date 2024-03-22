@@ -22,7 +22,7 @@ DriveGather is a web application designed to bring together car enthusiasts and 
 
 <h5>The server will start on `http://localhost:3000` and the client on `http://localhost:3001`.</h5>
 
-# CONTRIBUTING
+# Contributing
 
 - If you'd like to contribute to the project, feel free to fork the repository and submit a pull request.
 
