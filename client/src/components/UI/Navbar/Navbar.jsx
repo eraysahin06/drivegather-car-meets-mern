@@ -71,9 +71,9 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-4 items-center">
           <Link
             to="/"
-            className={`px-3 py-1 rounded-full ${
+            className={`px-3 py-1 rounded ${
               isScrolled
-                ? "bg-white text-black border-2 border-black hover:bg-gray-300"
+                ? "bg-white text-black border border-black hover:bg-gray-300"
                 : "hover:bg-gray-200"
             }`}
             onClick={closeMenu}
@@ -82,9 +82,9 @@ const Navbar = () => {
           </Link>
           <Link
             to="/about"
-            className={`px-3 py-1 rounded-full ${
+            className={`px-3 py-1 rounded ${
               isScrolled
-                ? "bg-white text-black border-2 border-black hover:bg-gray-300"
+                ? "bg-white text-black border border-black hover:bg-gray-300"
                 : "hover:bg-gray-200"
             }`}
             onClick={closeMenu}
