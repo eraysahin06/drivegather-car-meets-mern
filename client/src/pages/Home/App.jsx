@@ -5,6 +5,7 @@ import { useHasVehicle } from "../../hooks/useHasVehicle";
 import axios from "axios";
 import HeroSection from "../../components/HeroSection/HeroSection";
 import VehicleSection from "../../components/Vehicles/VehicleSection/VehicleSection";
+import Information from "../../components/Information/Information";
 
 function App() {
   const user = useAuth();
@@ -64,6 +65,7 @@ function App() {
             </h2>
           </div>
         )}
+        <Information />
         {/* User Vehicle */}
         <VehicleSection user={user} hasVehicle={hasVehicle} vehicle={vehicle} />
         {/* Communities */}

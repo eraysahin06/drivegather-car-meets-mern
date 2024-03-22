@@ -9,11 +9,13 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
 
   return (
     <div
-      className="mb-5 p-8 relative"
+      className="mb-5 p-8 relative min-h-[400px]"
       style={{
         backgroundImage: `url(${GTR})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
+        
+        
       }}
     >
       <div className="bg-white bg-opacity-90 p-4 rounded-lg">
