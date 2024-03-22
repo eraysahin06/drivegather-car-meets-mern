@@ -8,7 +8,9 @@ const CarMeets = ({ communityId, communityType, isMember }) => {
   useEffect(() => {
     const fetchCarMeets = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/car-meets/${communityId}/car-meets`);
+        const response = await axios.get(
+          `http://localhost:3000/car-meets/${communityId}/car-meets`
+        );
         setCarMeets(response.data);
       } catch (error) {
         console.error("Error fetching Car Meets:", error);
@@ -36,8 +38,13 @@ const CarMeets = ({ communityId, communityType, isMember }) => {
       <h3 className="text-2xl font-semibold mb-4">Car Meets</h3>
       <div className="flex flex-col">
         {carMeets.map((carMeet) => (
-          <div key={carMeet._id} className="bg-white text-black border-2 p-4 mb-4 rounded-md">
-            <h4 className="text-xl font-semibold text-yellow-500">{carMeet.name}</h4>
+          <div
+            key={carMeet._id}
+            className="bg-white text-black border-2 p-4 mb-4 rounded-md"
+          >
+            <h4 className="text-xl font-semibold text-yellow-500">
+              {carMeet.name}
+            </h4>
             <p>{carMeet.description}</p>
             <p>Location: {carMeet.location}</p>
             <p>Date: {new Date(carMeet.date).toLocaleDateString()}</p>
