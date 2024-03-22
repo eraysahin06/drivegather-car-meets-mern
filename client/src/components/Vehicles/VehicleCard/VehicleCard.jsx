@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { FaEdit } from 'react-icons/fa';
+import { FaEdit, FaTimes } from 'react-icons/fa'; // Import FaTimes
 import VehicleForm from '../VehicleForm/VehicleForm';
 
 const VehicleCard = ({ vehicle, onEdit }) => {
@@ -33,26 +33,28 @@ const VehicleCard = ({ vehicle, onEdit }) => {
             console.error('Error updating vehicle:', error);
         }
     };
-    
-    
 
     if (!vehicle) {
         return null; // or return a placeholder/loading component
     }
 
     return (
-        <div className="bg-white text-black border-2 border-gray-400 p-6 rounded-lg max-w-xs h-auto shadow-lg">
+        <div className="bg-white text-black border-2 border-black p-6 rounded-lg max-w-xs h-auto shadow-lg relative">
             {isEditing ? (
-                <VehicleForm vehicle={vehicle} onSubmit={handleUpdateVehicle} onCancel={handleCancelEdit} />
+                <>
+                    <button onClick={handleCancelEdit} className="absolute top-2 right-2 text-gray-400 hover:text-black">
+                        <FaTimes />
+                    </button>
+                    <VehicleForm vehicle={vehicle} onSubmit={handleUpdateVehicle} onCancel={handleCancelEdit} />
+                </>
             ) : (
                 <>
                     <div className="flex justify-between items-center mb-2 gap-4">
-                        <h3 className="text-lg font-bold">{vehicle.make} {vehicle.model}</h3>
-                        <button onClick={handleEditClick} className="text-gray-400 hover:text-white">
+                        <h3 className="text-lg font-bold">{vehicle.year} {vehicle.make} {vehicle.model}</h3>
+                        <button onClick={handleEditClick} className="text-gray-400 hover:text-black">
                             <FaEdit />
                         </button>
                     </div>
-                    <p>Year: {vehicle.year}</p>
                 </>
             )}
         </div>
