@@ -69,12 +69,14 @@ function App() {
         )}
         {/* User Vehicle */}
         {hasVehicle && vehicle ? (
-          <div className="mb-5 p-8">
+          <div className="mb-5 p-8 flex flex-col items-center justify-center">
             <h2 className="text-3xl font-semibold mb-4 flex items-center justify-center text-center gap-2">
               <FaCar />
               <span>Your Vehicle</span>
             </h2>
+            <div className="">
               <VehicleCard vehicle={vehicle} />
+            </div>
           </div>
         ) : (
           <div className="flex items-center mb-5 justify-center">
