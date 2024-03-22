@@ -63,7 +63,7 @@ function App() {
         {userDetails && (
           <div className="text-left p-8">
             <h2 className="text-xl font-semibold">
-              Welcome, {userDetails.username}
+              Welcome, {userDetails.displayName}
             </h2>
           </div>
         )}
@@ -74,7 +74,7 @@ function App() {
               <FaCar />
               <span>Your Vehicle</span>
             </h2>
-            <VehicleCard vehicle={vehicle} />
+              <VehicleCard vehicle={vehicle} />
           </div>
         ) : (
           <div className="flex items-center mb-5 justify-center">
