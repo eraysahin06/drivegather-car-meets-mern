@@ -10,7 +10,7 @@ DriveGather is a web application designed to bring together car enthusiasts and 
 - **Authentication:** Firebase
 - **Containerization:** Docker
 
-# HOW TO SET UP THE PROJECT FOR LOCAL TESTING (ONLY FOR MY FRIENDS :) )
+# How to set up the project for local testing (only for my friends :) )
 
 ## Set up environment variables:
 
