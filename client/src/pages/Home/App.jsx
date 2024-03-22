@@ -48,6 +48,9 @@ function App() {
     fetchUserVehicle();
   }, [user]);
 
+  // Extract the first name
+  const firstName = userDetails ? userDetails.displayName.split(" ")[0] : "";
+
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
       <div className="flex-1 bg-white text-black">
@@ -55,9 +58,9 @@ function App() {
           <HeroSection />
         {/* Welcome User */}
         {userDetails && (
-          <div className="text-center p-8 bg-black text-white">
+          <div className="text-center p-4 bg-black text-white">
             <h2 className="text-xl font-semibold">
-              Welcome, {userDetails.displayName}
+              Welcome to DriveGather, {firstName}
             </h2>
           </div>
         )}
