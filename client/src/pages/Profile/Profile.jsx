@@ -46,7 +46,7 @@ const Profile = () => {
     };
 
     return (
-        <div className="flex h-screen bg-gray-900 text-white">
+        <div className="flex h-screen bg-white text-black">
             <div className="flex-1 p-5">
                 <h1 className="text-2xl font-bold mb-4">Profile</h1>
                 {errorMessage && <div className="text-red-500">{errorMessage}</div>}

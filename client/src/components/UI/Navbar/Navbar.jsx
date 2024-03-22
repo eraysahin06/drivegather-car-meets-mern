@@ -149,6 +149,7 @@ const Navbar = () => {
           user={user}
           closeMenu={closeMenu}
           handleSignOut={handleSignOut}
+          isScrolled={isScrolled}
         />
       )}
     </nav>
