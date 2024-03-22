@@ -52,12 +52,10 @@ function App() {
     <div className="flex min-h-screen bg-gray-900 text-white">
       <div className="flex-1 bg-white text-black">
         {/* Hero Section */}
-        <div className="mb-8">
           <HeroSection />
-        </div>
         {/* Welcome User */}
         {userDetails && (
-          <div className="text-left p-8">
+          <div className="text-center p-8 bg-black text-white">
             <h2 className="text-xl font-semibold">
               Welcome, {userDetails.displayName}
             </h2>
