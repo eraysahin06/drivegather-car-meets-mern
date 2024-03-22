@@ -32,7 +32,7 @@ const CreateCommunity = () => {
     
 
     return (
-        <div className="flex h-screen bg-gray-900 text-white">
+        <div className="flex h-screen bg-white text-black">
             <div className="flex-1 p-5">
                 <h1 className="text-2xl font-bold mb-4">Create a Community</h1>
                 <form onSubmit={handleSubmit}>
