@@ -3,17 +3,17 @@ import PropTypes from "prop-types";
 
 const MobileMenu = ({ user, closeMenu, handleSignOut }) => {
   return (
-    <div className="md:hidden bg-white bg-opacity-95 py-2 shadow-md">
+    <div className="md:hidden font-semibold bg-opacity-95 py-4 shadow-md text-black space-y-2">
       <Link
         to="/"
-        className="block px-4 py-2 hover:text-gray-600"
+        className="block p-4 border-2 border-black hover:bg-gray-100 rounded-md"
         onClick={closeMenu}
       >
         Home
       </Link>
       <Link
         to="/about"
-        className="block px-4 py-2 hover:text-gray-600"
+        className="block p-4 border-2 border-black hover:bg-gray-100 rounded-md"
         onClick={closeMenu}
       >
         About
@@ -22,14 +22,14 @@ const MobileMenu = ({ user, closeMenu, handleSignOut }) => {
         <>
           <Link
             to="/profile"
-            className="block px-4 py-2 bg-black hover:bg-gray-900 text-white font-bold rounded"
+            className="block px-4 py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold rounded-md"
             onClick={closeMenu}
           >
             Profile
           </Link>
           <button
             onClick={handleSignOut}
-            className="block w-full text-left px-4 py-2 bg-red-600 hover:bg-red-800 text-white font-bold rounded"
+            className="block w-full text-left px-4 py-3 bg-red-700 hover:bg-red-600 text-white font-bold rounded-md"
           >
             Logout
           </button>
@@ -38,14 +38,14 @@ const MobileMenu = ({ user, closeMenu, handleSignOut }) => {
         <>
           <Link
             to="/login"
-            className="block px-4 py-2 bg-blue-600 hover:bg-blue-800 text-white font-bold rounded"
+            className="block px-4 py-3 bg-blue-700 hover:bg-blue-600 text-white font-bold rounded-md"
             onClick={closeMenu}
           >
             Sign In
           </Link>
           <Link
             to="/register"
-            className="block px-4 py-2 bg-green-600 hover:bg-green-800 text-white font-bold rounded"
+            className="block px-4 py-3 bg-green-700 hover:bg-green-600 text-white font-bold rounded-md"
             onClick={closeMenu}
           >
             Register

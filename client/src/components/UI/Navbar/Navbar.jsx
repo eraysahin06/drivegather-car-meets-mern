@@ -51,30 +51,52 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full top-0 z-10 transition-colors duration-300 ${
-        isScrolled ? "bg-white" : "bg-white"
-      } text-black px-4 py-2 shadow-md`}
-    >
+    className={`fixed w-full top-0 z-10 transition-colors duration-300 ${
+      isScrolled ? "bg-black bg-opacity-80 text-white" : "bg-white text-black"
+    } px-4 py-2 shadow-md`}
+  >
+  
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <Link
           to="/"
           className="text-2xl font-bold flex items-center justify-center"
           onClick={closeMenu}
         >
-          <img src={logo} alt="Drive Gather Logo" className="h-10" />
+          <img
+            src={logo}
+            alt="Drive Gather Logo"
+            className={`h-10 ${isScrolled ? "bg-white rounded" : ""}`}
+          />
         </Link>
         <div className="hidden md:flex space-x-4 items-center">
-          <Link to="/" className="hover:text-gray-600" onClick={closeMenu}>
+          <Link
+            to="/"
+            className={`px-3 py-1 rounded-full ${
+              isScrolled
+                ? "bg-white text-black border-2 border-black hover:bg-gray-300"
+                : "hover:bg-gray-200"
+            }`}
+            onClick={closeMenu}
+          >
             Home
           </Link>
-          <Link to="/about" className="hover:text-gray-600" onClick={closeMenu}>
+          <Link
+            to="/about"
+            className={`px-3 py-1 rounded-full ${
+              isScrolled
+                ? "bg-white text-black border-2 border-black hover:bg-gray-300"
+                : "hover:bg-gray-200"
+            }`}
+            onClick={closeMenu}
+          >
             About
           </Link>
           {user ? (
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="flex items-center hover:bg-gray-200 text-black font-bold py-1 px-3 rounded ml-2"
+                className={`flex items-center bg-white border-2 border-black hover:bg-gray-200 text-black font-bold py-1 px-3 rounded ml-2`}
+              
               >
                 <FaUserCircle size={24} />
                 <span className="ml-2">{user.displayName || "User"}</span>
