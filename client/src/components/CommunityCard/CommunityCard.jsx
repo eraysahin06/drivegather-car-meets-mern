@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { FaUser, FaCheck, FaUsers } from "react-icons/fa";
+import { FaUser, FaCheck, FaUsers, FaLock } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import useGetUser from "../../hooks/useGetUser";
 import axios from "axios";
@@ -48,10 +48,10 @@ const CommunityCard = ({ community, isCreator }) => {
   return (
     <Link
       to={`/community-page/${community._id}`}
-      className="flex flex-col bg-white rounded-lg border-2 shadow-md transition-shadow hover:shadow-xl w-full max-w-xs"
+      className="flex flex-col bg-white rounded-lg border-2 border-black transition-shadow hover:shadow-xl w-full max-w-xs"
     >
-      <div className="p-4 bg-gray-100">
-        <h3 className="text-xl font-bold text-gray-800">
+      <div className="p-4 bg-black text-white">
+        <h3 className="text-xl font-bold">
           {isCreator && (
             <FaUser
               className="inline mr-2 text-blue-500"
@@ -59,10 +59,17 @@ const CommunityCard = ({ community, isCreator }) => {
             />
           )}
           {community.name}
+          {community.type === "Private" && (
+            <FaLock
+              className="inline ml-2 text-sm text-red-500"
+              title="Private Community"
+            />
+          )}
         </h3>
-        <p className="text-sm text-gray-600">Type: {community.type}</p>
-        <p className="text-sm text-gray-600">
-          Creator: {community.creatorUsername}
+        <p className="text-sm">Type: {community.type}</p>
+        <p className="text-sm">
+          <span className="text-yellow-300">Creator:</span>{" "}
+          {community.creatorUsername}
         </p>
       </div>
       <div className="flex-grow p-4 flex flex-col justify-between">
