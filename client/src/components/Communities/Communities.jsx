@@ -49,13 +49,15 @@ const Communities = () => {
 
   return (
     <div className="container mx-auto p-8">
-      <div className="flex justify-between items-center mb-6">
-        <h2 className="text-3xl font-semibold">
+      <div className="flex flex-col md:flex-row justify-between items-center mb-6">
+        <h2 className="text-3xl font-semibold mb-4 md:mb-0">
           <FaUsers className="inline-block mr-2" />
           Communities
         </h2>
         <button
-          onClick={() => user ? navigate("/create-community") : navigate("/register")}
+          onClick={() =>
+            user ? navigate("/create-community") : navigate("/register")
+          }
           className="p-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
         >
           <FaPlus size={20} />
@@ -64,8 +66,10 @@ const Communities = () => {
       <div className="space-y-8">
         {createdCommunities.length > 0 && (
           <>
-            <h3 className="text-2xl font-semibold text-gray-800">Your Communities</h3>
-            <div className="flex flex-wrap gap-4">
+            <h3 className="text-2xl font-semibold text-gray-800">
+              Your Communities
+            </h3>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               {createdCommunities.map((community) => (
                 <CommunityCard
                   key={community._id}
@@ -79,8 +83,10 @@ const Communities = () => {
         )}
         {joinedCommunities.length > 0 && (
           <>
-            <h3 className="text-2xl font-semibold text-gray-800">Joined Communities</h3>
-            <div className="flex flex-wrap gap-4">
+            <h3 className="text-2xl font-semibold text-gray-800">
+              Joined Communities
+            </h3>
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               {joinedCommunities.map((community) => (
                 <CommunityCard
                   key={community._id}
@@ -92,8 +98,10 @@ const Communities = () => {
             </div>
           </>
         )}
-        <h3 className="text-2xl font-semibold text-gray-800">All Communities</h3>
-        <div className="flex flex-wrap gap-4">
+        <h3 className="text-2xl font-semibold text-gray-800">
+          All Communities
+        </h3>
+        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
           {user && otherCommunities.length > 0 ? (
             otherCommunities.map((community) => (
               <CommunityCard
@@ -124,8 +132,6 @@ const Communities = () => {
       </div>
     </div>
   );
-  
-  
 };
 
 export default Communities;
