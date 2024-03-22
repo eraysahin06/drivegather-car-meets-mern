@@ -41,12 +41,12 @@ const VehicleCard = ({ vehicle, onEdit }) => {
     }
 
     return (
-        <div className="bg-white text-black border-2 border-gray-400 p-4 rounded-lg">
+        <div className="bg-white text-black border-2 border-gray-400 p-6 rounded-lg">
             {isEditing ? (
                 <VehicleForm vehicle={vehicle} onSubmit={handleUpdateVehicle} onCancel={handleCancelEdit} />
             ) : (
                 <>
-                    <div className="flex justify-between items-center mb-2">
+                    <div className="flex justify-between items-center mb-2 gap-4">
                         <h3 className="text-lg font-bold">{vehicle.make} {vehicle.model}</h3>
                         <button onClick={handleEditClick} className="text-gray-400 hover:text-white">
                             <FaEdit />
