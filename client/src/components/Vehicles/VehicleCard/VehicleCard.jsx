@@ -41,7 +41,7 @@ const VehicleCard = ({ vehicle, onEdit }) => {
     }
 
     return (
-        <div className="bg-white text-black border-2 border-gray-400 p-6 rounded-lg">
+        <div className="bg-white text-black border-2 border-gray-400 p-6 rounded-lg max-w-xs h-auto shadow-lg">
             {isEditing ? (
                 <VehicleForm vehicle={vehicle} onSubmit={handleUpdateVehicle} onCancel={handleCancelEdit} />
             ) : (
