@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const User = require('./models/User/User');
+const Community = require('./models/Community/Community');
 
 dotenv.config();
 
