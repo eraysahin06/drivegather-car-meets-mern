@@ -29,7 +29,7 @@ const AttendeeMemberCard = ({ memberId }) => {
   }
 
   return (
-    <div className="flex flex-col items-center my-8 bg-white p-2 rounded-lg shadow-md border border-gray-700 hover:bg-gray-700 transition-colors w-1/6 min-w-[150px] mx-2">
+    <div className="flex flex-col items-center my-8 bg-white p-2 rounded-lg shadow-md border border-black transition-colors w-1/6 min-w-[150px] mx-2">
       <img
         src={member.photoURL}
         alt={member.username}
@@ -37,7 +37,7 @@ const AttendeeMemberCard = ({ memberId }) => {
       />
       <p className="font-semibold text-sm">{member.username}</p>
       {member.vehicle && (
-        <p className="text-xs text-gray-800">
+        <p className="text-xs">
           {member.vehicle.make} {member.vehicle.model} ({member.vehicle.year})
         </p>
       )}

@@ -5,7 +5,7 @@ const Information = () => {
     <div className="bg-white text-black p-4 rounded-md my-4 mx-4">
       <h2 className="font-bold text-2xl mb-4 text-center">About DriveGather</h2>
       <div className="flex flex-wrap justify-center gap-4">
-        <div className="bg-black text-white p-4 rounded-md shadow flex-1 max-w-md">
+        <div className="text-black border-2 border-black p-4 rounded-md shadow flex-1 max-w-md">
           <h3 className="font-bold text-xl mb-2 flex items-center">
             <FaCar className="mr-2" />
             Car Enthusiasts
@@ -16,7 +16,7 @@ const Information = () => {
             you can share your passion for cars with like-minded individuals.
           </p>
         </div>
-        <div className="bg-black text-white p-4 rounded-md shadow flex-1 max-w-md">
+        <div className="text-black border-2 border-black p-4 rounded-md shadow flex-1 max-w-md">
           <h3 className="font-bold text-xl mb-2 flex items-center">
             <FaUsers className="mr-2" />
             Community Connection
@@ -27,7 +27,7 @@ const Information = () => {
             a vibrant community for car lovers.
           </p>
         </div>
-        <div className="bg-black text-white p-4 rounded-md shadow flex-1 max-w-md">
+        <div className="text-black border-2 border-black p-4 rounded-md shadow flex-1 max-w-md">
           <h3 className="font-bold text-xl mb-2 flex items-center">
             <FaMapMarkerAlt className="mr-2" />
             Discover Events
