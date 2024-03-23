@@ -19,6 +19,8 @@ const CommunityPage = () => {
   const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
 
+  const [showForm, setShowForm] = useState(false);
+
   const fetchCommunity = useCallback(async () => {
     setLoading(true);
     try {
@@ -144,34 +146,17 @@ const CommunityPage = () => {
         />
       </div>
       <div className="mb-4">
+        {user && user._id === community.creatorId && (
+           <div className="mb-4">
+           <PendingJoinRequests
+             pendingMembers={community.pendingMembers}
+             acceptJoinRequest={acceptJoinRequest}
+             declineJoinRequest={declineJoinRequest}
+           />
+         </div>
+        )}
         <MemberList members={community.members} />
       </div>
-      {user && user._id === community.creatorId && (
-        <>
-          <div className="mb-4">
-            <PendingJoinRequests
-              pendingMembers={community.pendingMembers}
-              acceptJoinRequest={acceptJoinRequest}
-              declineJoinRequest={declineJoinRequest}
-            />
-          </div>
-          <div className="mb-4">
-            <CarMeetSection
-              communityId={id}
-              creatorId={community.creatorId}
-              fetchCommunity={fetchCommunity}
-            />
-          </div>
-          <div className="mb-4">
-            <button
-              className="bg-red-500 hover:bg-red-600 text-white p-2 rounded"
-              onClick={deleteCommunity}
-            >
-              Delete Community
-            </button>
-          </div>
-        </>
-      )}
       <div className="mb-4">
         <CarMeets
           communityId={id}
@@ -179,9 +164,38 @@ const CommunityPage = () => {
           isMember={isMember}
         />
       </div>
+      {user && user._id === community.creatorId && (
+        <div>
+          <button
+            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-6 px-4 rounded"
+            onClick={() => setShowForm(true)}
+          >
+            Create a Car Meet
+          </button>
+
+          {showForm && (
+            <>
+              <div className="mb-4">
+                <CarMeetSection
+                  communityId={id}
+                  creatorId={community.creatorId}
+                  fetchCommunity={fetchCommunity}
+                />
+              </div>
+              <div className="mb-4">
+                <button
+                  className="bg-red-500 hover:bg-red-600 text-white p-2 rounded"
+                  onClick={deleteCommunity}
+                >
+                  Delete Community
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
-  
 };
 
 export default CommunityPage;
