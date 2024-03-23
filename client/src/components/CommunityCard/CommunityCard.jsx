@@ -48,9 +48,9 @@ const CommunityCard = ({ community, isCreator }) => {
   return (
     <Link
       to={`/community-page/${community._id}`}
-      className="flex flex-col bg-white rounded-lg border-2 border-black transition-shadow hover:shadow-xl w-full max-w-xs"
+      className="flex flex-col bg-white rounded-lg border-2 border-gray-700 transition-shadow hover:shadow-xl w-full max-w-xs "
     >
-      <div className="p-4 bg-black text-white">
+      <div className="p-4 bg-gray-700 text-white">
         <h3 className="text-xl font-bold">
           {isCreator && (
             <FaUser

@@ -2,7 +2,7 @@ import { FaCar, FaUsers, FaMapMarkerAlt } from "react-icons/fa";
 
 const Information = () => {
   return (
-    <div className="flex flex-col items-center justify-center bg-white text-black p-4 rounded-md my-4 mx-4 min-h-[500px]">
+    <div className="flex flex-col items-center justify-center bg-white text-black p-8 rounded-md my-4 mx-4 min-h-[500px]">
       <h2 className="font-bold text-2xl mb-8 text-center">About DriveGather</h2>
       <div className="flex flex-wrap justify-center gap-4">
         <div className="text-black border-2 border-black p-4 rounded-md shadow flex-1 max-w-md">
