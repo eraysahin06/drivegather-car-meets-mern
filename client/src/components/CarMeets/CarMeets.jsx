@@ -40,7 +40,7 @@ const CarMeets = ({ communityId, communityType, isMember }) => {
         {carMeets.map((carMeet) => (
           <div
             key={carMeet._id}
-            className="bg-white text-black border-2 p-4 mb-4 rounded-md"
+            className="bg-white text-black border-2 border-gray-700 p-4 mb-4 rounded-md"
           >
             <h4 className="text-xl font-semibold text-yellow-500">
               {carMeet.name}
