@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-import { FaEdit, FaTimes } from 'react-icons/fa'; // Import FaTimes
+import { FaEdit, FaTimes } from 'react-icons/fa';
 import VehicleForm from '../VehicleForm/VehicleForm';
 
 const VehicleCard = ({ vehicle, onEdit }) => {

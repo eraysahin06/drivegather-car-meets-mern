@@ -58,6 +58,7 @@ const CommunityCard = ({ community, isCreator }) => {
               title="Created by you"
             />
           )}
+          <div className="flex items-center">
           {community.name}
           {community.type === "Private" && (
             <FaLock
@@ -65,6 +66,8 @@ const CommunityCard = ({ community, isCreator }) => {
               title="Private Community"
             />
           )}
+          </div>
+          
         </h3>
         <p className="text-sm">Type: {community.type}</p>
         <p className="text-sm">
