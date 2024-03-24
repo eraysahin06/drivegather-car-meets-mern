@@ -53,10 +53,10 @@ router.get("/:communityId/car-meets", async (req, res) => {
   }
 });
 
-// Edit a Car Meet
-router.put("/car-meets/:carMeetId", async (req, res) => {
-  const { carMeetId } = req.params;
-  const { name, description, location, date, maxAttendees } = req.body;
+// Update a Car Meet
+router.put("/:communityId/car-meets/:carMeetId", async (req, res) => {
+  const { communityId, carMeetId } = req.params;
+  const { creatorId, name, description, location, date, maxAttendees } = req.body;
 
   try {
     const carMeet = await CarMeet.findById(carMeetId);
@@ -65,27 +65,28 @@ router.put("/car-meets/:carMeetId", async (req, res) => {
       return res.status(404).json({ message: "Car Meet not found" });
     }
 
-    const community = await Community.findById(carMeet.communityId);
+    const community = await Community.findById(communityId);
     if (!community) {
       return res.status(404).json({ message: "Community not found" });
     }
 
-    if (community.creatorId.toString() !== req.user._id.toString()) {
+    if (community.creatorId.toString() !== creatorId) {
       return res
         .status(403)
-        .json({ message: "Only the community creator can edit this Car Meet" });
+        .json({ message: "Only the community creator can update a Car Meet" });
     }
 
-    carMeet.name = name;
-    carMeet.description = description;
-    carMeet.location = location;
-    carMeet.date = date;
-    carMeet.maxAttendees = maxAttendees;
+    await CarMeet.findByIdAndUpdate(carMeetId, {
+      name,
+      description,
+      location,
+      date,
+      maxAttendees,
+    });
 
-    await carMeet.save();
-
-    res.status(200).json(carMeet);
+    res.status(200).json({ message: "Car Meet updated successfully" });
   } catch (error) {
+    console.error("Error updating car meet:", error);
     res.status(500).json({ message: error.message });
   }
 });
