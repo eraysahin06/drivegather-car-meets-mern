@@ -38,7 +38,7 @@ const CommunityCard = ({ community, isCreator }) => {
           `${import.meta.env.VITE_HOST}/communities/${community._id}/join`,
           { userId: user._id }
         );
-        window.location.reload();
+        navigate(`/community-page/${community._id}`);
       } catch (error) {
         console.error("Error joining community:", error);
       }
