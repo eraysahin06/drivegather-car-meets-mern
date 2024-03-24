@@ -66,7 +66,7 @@ const Communities = () => {
       <div className="space-y-8">
         {createdCommunities.length > 0 && (
           <>
-            <h3 className="text-2xl font-semibold text-gray-800">
+            <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
               Your Communities
             </h3>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
@@ -83,7 +83,7 @@ const Communities = () => {
         )}
         {joinedCommunities.length > 0 && (
           <>
-            <h3 className="text-2xl font-semibold text-gray-800">
+            <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
               Joined Communities
             </h3>
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
@@ -98,7 +98,7 @@ const Communities = () => {
             </div>
           </>
         )}
-        <h3 className="text-2xl font-semibold text-gray-800">
+        <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
           All Communities
         </h3>
         <div className="flex flex-wrap gap-4 justify-center md:justify-start">
