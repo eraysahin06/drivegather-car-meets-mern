@@ -69,7 +69,7 @@ const Communities = () => {
             <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
               Your Communities
             </h3>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {createdCommunities.map((community) => (
                 <CommunityCard
                   key={community._id}
@@ -86,7 +86,7 @@ const Communities = () => {
             <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
               Joined Communities
             </h3>
-            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {joinedCommunities.map((community) => (
                 <CommunityCard
                   key={community._id}
@@ -101,7 +101,7 @@ const Communities = () => {
         <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
           All Communities
         </h3>
-        <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {user && otherCommunities.length > 0 ? (
             otherCommunities.map((community) => (
               <CommunityCard
@@ -132,6 +132,7 @@ const Communities = () => {
       </div>
     </div>
   );
+
 };
 
 export default Communities;
