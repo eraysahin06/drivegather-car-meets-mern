@@ -8,7 +8,11 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
   const navigate = useNavigate();
 
   return (
-    <div
+    <>
+    <h2 className="text-3xl font-semibold mb-4 flex items-center justify-center text-center gap-2">
+          Choose Your Vehicle
+        </h2>
+     <div
       className="bg-gray-100 p-4 rounded relative overflow-hidden"
       style={{
         backgroundImage: `url(${GTR})`,
@@ -46,6 +50,8 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
         )}
       </div>
     </div>
+    </>
+   
   );
 };
 
