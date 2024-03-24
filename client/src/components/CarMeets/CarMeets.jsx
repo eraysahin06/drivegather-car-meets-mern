@@ -1,8 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 
-const CarMeets = ({ communityId, communityType, isMember }) => {
+const CarMeets = ({
+  communityId,
+  communityType,
+  isMember,
+  creatorId,
+  user,
+}) => {
   const [carMeets, setCarMeets] = useState([]);
 
   useEffect(() => {
@@ -21,6 +28,25 @@ const CarMeets = ({ communityId, communityType, isMember }) => {
       fetchCarMeets();
     }
   }, [communityId, communityType, isMember]);
+
+  const deleteCarMeet = async (carMeetId) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this car meet?"
+    );
+    if (confirmDelete) {
+      try {
+        await axios.delete(
+          `${
+            import.meta.env.VITE_HOST
+          }/car-meets/${communityId}/car-meets/${carMeetId}`
+        );
+
+        setCarMeets(carMeets.filter((carMeet) => carMeet._id !== carMeetId));
+      } catch (error) {
+        console.error("Error deleting car meet:", error);
+      }
+    }
+  };
 
   if (communityType === "Private" && !isMember) {
     return (
@@ -48,6 +74,24 @@ const CarMeets = ({ communityId, communityType, isMember }) => {
             <p>{carMeet.description}</p>
             <p>Location: {carMeet.location}</p>
             <p>Date: {new Date(carMeet.date).toLocaleDateString()}</p>
+            {user && user._id === creatorId && (
+              <div className="flex space-x-2">
+                <button
+                  className="p-2 text-blue-500"
+                  onClick={() => {
+                    /* Handle edit logic here */
+                  }}
+                >
+                  <FiEdit />
+                </button>
+                <button
+                  className="p-2 text-red-500"
+                  onClick={() => deleteCarMeet(carMeet._id)}
+                >
+                  <FiTrash2 />
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -59,6 +103,8 @@ CarMeets.propTypes = {
   communityId: PropTypes.string.isRequired,
   communityType: PropTypes.string.isRequired,
   isMember: PropTypes.bool.isRequired,
+  creatorId: PropTypes.string.isRequired,
+  user: PropTypes.object,
 };
 
 export default CarMeets;

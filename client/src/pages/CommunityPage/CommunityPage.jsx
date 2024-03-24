@@ -19,6 +19,7 @@ const CommunityPage = () => {
   const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
 
+
   const [showForm, setShowForm] = useState(false);
 
   const fetchCommunity = useCallback(async () => {
@@ -141,29 +142,36 @@ const CommunityPage = () => {
           cancelJoinRequest={cancelJoinRequest}
           leaveCommunity={leaveCommunity}
           communityType={community.type}
-          userId={user?._id}
+          userId={user?._id || ''}
           creatorId={community.creatorId}
         />
       </div>
       <div className="mb-4">
         {user && user._id === community.creatorId && (
-           <div className="mb-4">
-           <PendingJoinRequests
-             pendingMembers={community.pendingMembers}
-             acceptJoinRequest={acceptJoinRequest}
-             declineJoinRequest={declineJoinRequest}
-           />
-         </div>
+          <div className="mb-4">
+            <PendingJoinRequests
+              pendingMembers={community.pendingMembers}
+              acceptJoinRequest={acceptJoinRequest}
+              declineJoinRequest={declineJoinRequest}
+            />
+          </div>
         )}
         <MemberList members={community.members} />
       </div>
-      <div className="mb-4">
-        <CarMeets
-          communityId={id}
-          communityType={community.type}
-          isMember={isMember}
-        />
-      </div>
+      {user ? (
+        <div className="mb-4">
+          <CarMeets
+            communityId={id}
+            communityType={community.type}
+            isMember={isMember}
+            creatorId={community.creatorId}
+            user={user}
+          />
+        </div>
+      ) : (
+        <h5 className="text-lg">Log in to see car meets</h5>
+      )}
+
       {user && user._id === community.creatorId && (
         <div>
           <button
