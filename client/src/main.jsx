@@ -12,6 +12,7 @@ import Profile from "./pages/Profile/Profile.jsx";
 import CreateCommunity from "./pages/CreateCommunity/CreateCommunity.jsx";
 import CommunityPage from "./pages/CommunityPage/CommunityPage.jsx";
 import ExploreCommunities from "./pages/ExploreCommunities/ExploreCommunities.jsx";
+import AllCommunities from "./pages/AllCommunities/AllCommunities.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,8 @@ const router = createBrowserRouter([
       {path: "/create-community", element: <CreateCommunity /> },
       { path: "/community-page/:id", element: <CommunityPage /> },
       {path: "/explore-communities", element: <ExploreCommunities /> },
+      { path: "*", element: <div>Not Found</div> },
+      { path: "/communities", element: <AllCommunities /> },
     ],
   },
 ]);

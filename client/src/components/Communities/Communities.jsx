@@ -13,14 +13,18 @@ const Communities = () => {
   useEffect(() => {
     const fetchCommunities = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_HOST}/communities`);
+        const response = await axios.get(
+          `${import.meta.env.VITE_HOST}/communities`
+        );
         const communitiesData = response.data;
 
         // Check membership for each community
         const checkedCommunities = await Promise.all(
           communitiesData.map(async (community) => {
             const isMemberResponse = await axios.get(
-              `${import.meta.env.VITE_HOST}/communities/${community._id}/isMember/${user._id}`
+              `${import.meta.env.VITE_HOST}/communities/${
+                community._id
+              }/isMember/${user._id}`
             );
             return { ...community, isMember: isMemberResponse.data.isMember };
           })
@@ -98,19 +102,32 @@ const Communities = () => {
             </div>
           </>
         )}
-        <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
-          All Communities
-        </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="flex flex-col items-center justify-center">
+          <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
+            Explore Communities
+          </h3>
+          {otherCommunities.length > 3 && (
+            <Link
+              to="/communities"
+              className="text-sm w-[100px] hover:bg-black hover:text-white text-center border-2 border-gray-700"
+            >
+              View all
+            </Link>
+          )}
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {user && otherCommunities.length > 0 ? (
-            otherCommunities.map((community) => (
-              <CommunityCard
-                key={community._id}
-                community={community}
-                isCreator={false}
-                isJoined={false}
-              />
-            ))
+            otherCommunities
+              .slice(0, 3)
+              .map((community) => (
+                <CommunityCard
+                  key={community._id}
+                  community={community}
+                  isCreator={false}
+                  isJoined={false}
+                />
+              ))
           ) : (
             <div className="w-full text-center">
               <p className="text-gray-500 mb-4">
@@ -132,7 +149,6 @@ const Communities = () => {
       </div>
     </div>
   );
-
 };
 
 export default Communities;
