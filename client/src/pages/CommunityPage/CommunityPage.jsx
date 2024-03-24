@@ -190,7 +190,10 @@ const CommunityPage = () => {
                   fetchCommunity={fetchCommunity}
                 />
               </div>
-              <div className="mb-4">
+             
+            </>
+          )}
+           <div className="my-4">
                 <button
                   className="bg-red-500 hover:bg-red-600 text-white p-2 rounded"
                   onClick={deleteCommunity}
@@ -198,8 +201,6 @@ const CommunityPage = () => {
                   Delete Community
                 </button>
               </div>
-            </>
-          )}
         </div>
       )}
     </div>
