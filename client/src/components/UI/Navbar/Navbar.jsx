@@ -51,11 +51,10 @@ const Navbar = () => {
 
   return (
     <nav
-    className={`fixed w-full top-0 z-10 transition-colors duration-300 ${
-      isScrolled ? "bg-black bg-opacity-80 text-white" : "bg-white text-black"
-    } px-4 py-2 shadow-md`}
-  >
-  
+      className={`fixed w-full top-0 z-10 transition-colors duration-300 ${
+        isScrolled ? "bg-black bg-opacity-80 text-white" : "bg-white text-black"
+      } px-4 py-2 shadow-md`}
+    >
       <div className="flex justify-between items-center max-w-6xl mx-auto">
         <Link
           to="/"
@@ -80,6 +79,20 @@ const Navbar = () => {
           >
             Home
           </Link>
+          {user && (
+            <Link
+              to="/communities"
+              className={`px-3 py-1 rounded ${
+                isScrolled
+                  ? "bg-white text-black border border-black hover:bg-gray-300"
+                  : "hover:bg-gray-200"
+              }`}
+              onClick={closeMenu}
+            >
+              Communities
+            </Link>
+          )}
+
           <Link
             to="/about"
             className={`px-3 py-1 rounded ${
@@ -96,7 +109,6 @@ const Navbar = () => {
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className={`flex items-center bg-white border-2 border-black hover:bg-gray-200 text-black font-bold py-1 px-3 rounded ml-2`}
-              
               >
                 <FaUserCircle size={24} />
                 <span className="ml-2">{user.displayName || "User"}</span>
