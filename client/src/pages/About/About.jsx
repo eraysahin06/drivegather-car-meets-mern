@@ -17,11 +17,11 @@ const About = () => {
         </div>
       </div>
       <div className="mx-auto px-4 py-8 max-w-4xl">
-        <h1 className="text-3xl font-bold text-center my-8">About Car Meets</h1>
+        <h1 className="text-3xl font-bold text-center my-8">About DriveGather</h1>
         <p className="text-lg leading-relaxed">
-          Car Meets is a platform for car enthusiasts to connect and share their
+        DriveGather is a platform for car enthusiasts to connect and share their
           passion for cars. Whether you&apos;re a fan of classic cars, sports
-          cars, or any other type of vehicle, Car Meets is the place to meet
+          cars, or any other type of vehicle, DriveGather is the place to meet
           like-minded individuals, share your experiences, and learn from
           others.
         </p>
@@ -34,7 +34,7 @@ const About = () => {
         <p className="text-lg leading-relaxed mt-4">
           Join us and be a part of our growing community of car enthusiasts.
           Share your car stories, participate in discussions, and connect with
-          others who share your passion. Let&apos;s make Car Meets the ultimate
+          others who share your passion. Let&apos;s make DriveGather the ultimate
           destination for all things automotive!
         </p>
       </div>
