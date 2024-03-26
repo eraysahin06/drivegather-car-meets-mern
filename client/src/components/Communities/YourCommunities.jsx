@@ -47,16 +47,13 @@ const Communities = () => {
   const joinedCommunities = communities.filter(
     (community) => community.isMember && community.creatorId !== user?._id
   );
-  const otherCommunities = communities.filter(
-    (community) => !community.isMember && community.creatorId !== user?._id
-  );
 
   return (
     <div className="container mx-auto p-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-6">
         <h2 className="text-3xl font-semibold mb-4 md:mb-0">
           <FaUsers className="inline-block mr-2" />
-          Communities ({communities.length} Total)
+          {user ? `Communities (${communities.length} Total)` : "Communities"}
         </h2>
         <button
           onClick={() =>
@@ -102,33 +99,9 @@ const Communities = () => {
             </div>
           </>
         )}
-        <div className="flex flex-col items-center justify-center">
-          <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
-            Explore Communities ({otherCommunities.length} available)
-          </h3>
-          {otherCommunities.length > 3 && (
-            <Link
-              to="/communities"
-              className="text-sm w-[100px] hover:bg-black hover:text-white text-center border-2 border-gray-700"
-            >
-              View all
-            </Link>
-          )}
-        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {user && otherCommunities.length > 0 ? (
-            otherCommunities
-              .slice(0, 3)
-              .map((community) => (
-                <CommunityCard
-                  key={community._id}
-                  community={community}
-                  isCreator={false}
-                  isJoined={false}
-                />
-              ))
-          ) : (
+          {!user && (
             <div className="w-full text-center">
               <p className="text-gray-500 mb-4">
                 {user

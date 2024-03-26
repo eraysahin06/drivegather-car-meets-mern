@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Communities from "../../components/Communities/Communities";
+import YourCommunities from "../../components/Communities/YourCommunities";
 import { useAuth } from "../../hooks/useAuth";
 import { useHasVehicle } from "../../hooks/useHasVehicle";
 import axios from "axios";
@@ -69,7 +69,7 @@ function App() {
         {/* User Vehicle */}
         <VehicleSection user={user} hasVehicle={hasVehicle} vehicle={vehicle} />
         {/* Communities */}
-        <Communities user={user} />
+        <YourCommunities user={user} />
       </div>
     </div>
   );
