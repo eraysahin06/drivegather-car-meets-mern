@@ -52,7 +52,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full top-0 z-10 transition-colors duration-300 ${
-        isScrolled ? "bg-black bg-opacity-80 text-white" : "bg-white text-black"
+        isScrolled ? "bg-black text-white" : "bg-white text-black"
       } px-4 py-2 shadow-md`}
     >
       <div className="flex justify-between items-center max-w-6xl mx-auto">
@@ -72,7 +72,7 @@ const Navbar = () => {
             to="/"
             className={`px-3 py-1 rounded flex items-center justify-center ${
               isScrolled
-                ? "bg-white text-black border border-black hover:bg-gray-300"
+                ? "bg-white text-black hover:bg-gray-300"
                 : "hover:bg-gray-200"
             }`}
             onClick={closeMenu}
@@ -84,7 +84,7 @@ const Navbar = () => {
               to="/communities"
               className={`px-3 py-1 rounded flex items-center justify-center ${
                 isScrolled
-                  ? "bg-white text-black border border-black hover:bg-gray-300"
+                  ? "bg-white text-black hover:bg-gray-300"
                   : "hover:bg-gray-200"
               }`}
               onClick={closeMenu}
@@ -97,7 +97,7 @@ const Navbar = () => {
             to="/about"
             className={`px-3 py-1 rounded ${
               isScrolled
-                ? "bg-white text-black border border-black hover:bg-gray-300"
+                ? "bg-white text-black hover:bg-gray-300"
                 : "hover:bg-gray-200"
             }`}
             onClick={closeMenu}
