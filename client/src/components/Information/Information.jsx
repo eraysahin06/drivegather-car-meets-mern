@@ -1,9 +1,11 @@
 import { FaCar, FaUsers, FaMapMarkerAlt } from "react-icons/fa";
+import map from '../../assets/map.png'
 
 const Information = () => {
   return (
     <div className="flex flex-col items-center justify-center bg-white text-black p-8 rounded-md my-4 mx-4 min-h-[500px]">
       <h2 className="font-bold text-2xl mb-8 text-center">About DriveGather</h2>
+      <img src={map} alt="Drive Gather Meet" className="mb-8 w-full max-w-[1000px] h-auto rounded-md" />
       <div className="flex flex-wrap justify-center gap-4">
         <div className="text-white bg-gray-700 border-2 border-gray-700 p-4 rounded-md shadow flex-1 max-w-md">
           <h3 className="font-bold text-xl mb-2 flex items-center">

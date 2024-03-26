@@ -85,6 +85,7 @@ const Communities = () => {
             </div>
           </>
         )}
+        <hr />
         {joinedCommunities.length > 0 && (
           <>
             <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
@@ -102,6 +103,7 @@ const Communities = () => {
             </div>
           </>
         )}
+        <hr />
         <div className="flex flex-col items-center justify-center">
           <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
             Explore Communities ({otherCommunities.length} available)

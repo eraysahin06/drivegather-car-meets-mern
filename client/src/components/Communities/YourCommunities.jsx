@@ -82,6 +82,7 @@ const Communities = () => {
             </div>
           </>
         )}
+        <hr />
         {joinedCommunities.length > 0 && (
           <>
             <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
