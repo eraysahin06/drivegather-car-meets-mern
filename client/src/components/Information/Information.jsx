@@ -12,6 +12,7 @@ const Information = () => {
             <FaCar className="mr-2" />
             Car Enthusiasts
           </h3>
+          <hr className="mb-2" />
           <p className="text-md">
             DriveGather is a platform dedicated to bringing car enthusiasts
             together. Discover local car meets, events, and communities where
@@ -21,8 +22,9 @@ const Information = () => {
         <div className="text-white bg-gray-700 border-2 border-black p-4 rounded-md shadow flex-1 max-w-md min-w-lg">
           <h3 className="font-bold text-xl mb-2 flex items-center">
             <FaUsers className="mr-2" />
-            Community Connection
+            Connection
           </h3>
+          <hr className="mb-2" />
           <p className="text-md">
             Join communities to connect with other car enthusiasts, discuss your
             favorite cars, and plan meet-ups. DriveGather is all about creating
@@ -34,6 +36,7 @@ const Information = () => {
             <FaMapMarkerAlt className="mr-2" />
             Discover Events
           </h3>
+          <hr className="mb-2" />
           <p className="text-md">
             Explore events and car meets near you. Whether you&apos;re into
             classic cars, sports cars, or just want to check out some cool
