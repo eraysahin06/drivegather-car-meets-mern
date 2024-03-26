@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { FaBars, FaTimes, FaUserCircle } from "react-icons/fa";
+import { FaBars, FaHome, FaTimes, FaUserCircle, FaUsers } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useAuth } from "../../../hooks/useAuth";
@@ -70,26 +70,26 @@ const Navbar = () => {
         <div className="hidden md:flex space-x-4 items-center">
           <Link
             to="/"
-            className={`px-3 py-1 rounded ${
+            className={`px-3 py-1 rounded flex items-center justify-center ${
               isScrolled
                 ? "bg-white text-black border border-black hover:bg-gray-300"
                 : "hover:bg-gray-200"
             }`}
             onClick={closeMenu}
           >
-            Home
+           <FaHome /> <span className="ml-2">Home</span>
           </Link>
           {user && (
             <Link
               to="/communities"
-              className={`px-3 py-1 rounded ${
+              className={`px-3 py-1 rounded flex items-center justify-center ${
                 isScrolled
                   ? "bg-white text-black border border-black hover:bg-gray-300"
                   : "hover:bg-gray-200"
               }`}
               onClick={closeMenu}
             >
-              Communities
+            <FaUsers /> <span className="ml-2">Communities</span> 
             </Link>
           )}
 
