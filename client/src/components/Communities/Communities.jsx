@@ -71,7 +71,7 @@ const Communities = () => {
         {createdCommunities.length > 0 && (
           <>
             <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
-              Your Communities
+              Your Communities ({createdCommunities.length})
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {createdCommunities.map((community) => (
@@ -88,7 +88,7 @@ const Communities = () => {
         {joinedCommunities.length > 0 && (
           <>
             <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
-              Joined Communities
+              Joined Communities ({joinedCommunities.length})
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {joinedCommunities.map((community) => (
@@ -104,7 +104,7 @@ const Communities = () => {
         )}
         <div className="flex flex-col items-center justify-center">
           <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
-            Explore Communities
+            Explore Communities ({otherCommunities.length} available)
           </h3>
           {otherCommunities.length > 3 && (
             <Link
