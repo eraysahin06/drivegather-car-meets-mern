@@ -108,17 +108,22 @@ const Communities = () => {
                   ? "You have joined all available communities."
                   : "Sign in to explore communities."}
               </p>
-              {!user && (
-                <Link
-                  to="/register"
-                  className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800"
-                >
-                  Explore Communities
-                </Link>
-              )}
+
+              <Link
+                to="/register"
+                className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800"
+              >
+                Explore Communities
+              </Link>
             </div>
           )}
         </div>
+        <div className="flex items-center justify-center">
+        <Link to='/communities' className="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          View All
+        </Link>
+        </div>
+       
       </div>
     </div>
   );
