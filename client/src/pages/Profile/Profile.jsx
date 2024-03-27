@@ -73,6 +73,11 @@ const Profile = () => {
             <div className="text-red-500 mb-4">{errorMessage}</div>
           )}
           <div className="mb-4">
+            <label className="block font-semibold">Name</label>
+            <p className="text-lg">{user?.displayName}</p>
+          </div>
+
+          <div className="mb-4">
             <label className="block font-semibold">Username</label>
             {isEditing ? (
               <input
@@ -84,26 +89,26 @@ const Profile = () => {
             ) : (
               <p className="text-lg">{username}</p>
             )}
+            {isEditing ? (
+              <button
+                onClick={handleSave}
+                className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Save
+              </button>
+            ) : (
+              <button
+                onClick={handleEdit}
+                className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              >
+                Edit Username
+              </button>
+            )}
           </div>
           <div className="mb-4">
             <label className="block font-semibold">Email</label>
             <p className="text-lg">{user?.email}</p>
           </div>
-          {isEditing ? (
-            <button
-              onClick={handleSave}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Save
-            </button>
-          ) : (
-            <button
-              onClick={handleEdit}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            >
-              Edit Username
-            </button>
-          )}
         </div>
       </div>
     </div>
