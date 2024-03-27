@@ -82,7 +82,7 @@ const CommunityCard = ({ community, isCreator }) => {
         </div>
         {!isCreator &&
           (isJoined ? (
-            <span className="mt-4 text-green-500 flex items-center justify-center">
+            <span className="bg-gray-700 mt-4 text-green-500 flex items-center justify-center">
               <FaCheck className="mr-1" /> Joined
             </span>
           ) : isPending ? (
@@ -91,7 +91,7 @@ const CommunityCard = ({ community, isCreator }) => {
             </span>
           ) : (
             <button
-              className="mt-4 bg-gray-800 hover:bg-gray-900 text-white py-2 px-4 rounded transition-all duration-200"
+              className="mt-4 bg-gray-700 hover:bg-gray-900 text-white py-2 px-4 rounded transition-all duration-200"
               onClick={(e) => {
                 e.preventDefault();
                 joinCommunity();
