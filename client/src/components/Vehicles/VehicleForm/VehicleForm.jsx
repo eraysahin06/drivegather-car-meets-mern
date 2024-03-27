@@ -34,11 +34,11 @@ const VehicleForm = ({ vehicle: initialVehicle, onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="bg-white text-black p-8 rounded-lg shadow-lg">
+        <form onSubmit={handleSubmit} className="bg-gray-800 text-white p-8 rounded-lg shadow-lg">
           <h1 className="text-2xl font-bold text-center mb-4">{initialVehicle ? 'Edit Vehicle' : 'Add Vehicle'}</h1>
           <div className="mb-4">
             <label htmlFor="make" className="block mb-2">Make</label>
-            <select name="make" id="make" value={vehicle.make} onChange={handleChange} className="w-full p-2 rounded-lg border border-gray-300">
+            <select name="make" id="make" value={vehicle.make} onChange={handleChange} className="w-full text-black p-2 rounded-lg border border-gray-300">
               <option value="">Select Make</option>
               {Object.keys(carBrands).map((brand) => (
                 <option key={brand} value={brand}>{brand}</option>
@@ -47,7 +47,7 @@ const VehicleForm = ({ vehicle: initialVehicle, onSubmit }) => {
           </div>
           <div className="mb-4">
             <label htmlFor="model" className="block mb-2">Model</label>
-            <select name="model" id="model" value={vehicle.model} onChange={handleChange} className="w-full p-2 rounded-lg border border-gray-300" disabled={!vehicle.make}>
+            <select name="model" id="model" value={vehicle.model} onChange={handleChange} className="w-full p-2 text-black rounded-lg border border-gray-300" disabled={!vehicle.make}>
               <option value="">Select Model</option>
               {vehicle.make && carBrands[vehicle.make].map((model) => (
                 <option key={model} value={model}>{model}</option>
@@ -56,7 +56,7 @@ const VehicleForm = ({ vehicle: initialVehicle, onSubmit }) => {
           </div>
           <div className="mb-4">
             <label htmlFor="year" className="block mb-2">Year</label>
-            <select name="year" id="year" value={vehicle.year} onChange={handleChange} className="w-full p-2 rounded-lg border border-gray-300">
+            <select name="year" id="year" value={vehicle.year} onChange={handleChange} className="w-full p-2 text-black rounded-lg border border-gray-300">
               <option value="">Select Year</option>
               {generateYearOptions()}
             </select>
