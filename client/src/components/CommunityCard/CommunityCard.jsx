@@ -48,9 +48,9 @@ const CommunityCard = ({ community, isCreator }) => {
   return (
     <Link
       to={`/community-page/${community._id}`}
-      className="flex flex-col bg-white rounded-lg border-2 border-gray-700 transition-shadow hover:shadow-xl w-full max-w-xs "
+      className="flex flex-col bg-gray-800 rounded-lg border-2 border-gray-900 transition-shadow hover:shadow-xl w-full max-w-xs "
     >
-      <div className="p-4 bg-gray-700 text-white">
+      <div className="p-4 bg-gray-900 text-white">
         <h3 className="text-xl font-bold">
           {isCreator && (
             <FaUser
@@ -76,7 +76,7 @@ const CommunityCard = ({ community, isCreator }) => {
         </p>
       </div>
       <div className="flex-grow p-4 flex flex-col justify-between">
-        <div className="flex items-center text-gray-700">
+        <div className="flex items-center text-white">
           <FaUsers className="text-lg" />
           <span className="text-lg ml-2">{community.memberCount} Members</span>
         </div>
