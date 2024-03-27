@@ -111,7 +111,7 @@ const Communities = () => {
           {otherCommunities.length > 3 && (
             <Link
               to="/communities"
-              className="text-sm w-[100px] hover:bg-black hover:text-white text-center border-2 border-gray-700"
+              className="text-sm w-[100px] hover:bg-white hover:text-black bg-black text-white text-center border-2 border-gray-700"
             >
               View all
             </Link>

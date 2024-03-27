@@ -120,7 +120,7 @@ const Communities = () => {
           )}
         </div>
         <div className="flex items-center justify-center">
-        <Link to='/communities' className="text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        <Link to='/communities' className="text-center bg-black hover:bg-white hover:text-black text-white font-bold py-2 px-4 rounded border-2 border-gray-700">
           View All Communities
         </Link>
         </div>
