@@ -54,7 +54,7 @@ const CommunityCard = ({ community, isCreator }) => {
         <h3 className="text-xl font-bold">
           {isCreator && (
             <FaUser
-              className="inline mr-2 text-green-500"
+              className="inline mr-2 text-sm text-green-500"
               title="Created by you"
             />
           )}
