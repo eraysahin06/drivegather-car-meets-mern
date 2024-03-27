@@ -13,7 +13,7 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
           Choose Your Vehicle
         </h2>
      <div
-      className="bg-gray-100 p-4 rounded relative overflow-hidden"
+      className="bg-gray-100 p-4 relative overflow-hidden"
       style={{
         backgroundImage: `url(${GTR})`,
         backgroundSize: "cover",
@@ -22,7 +22,7 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
         
       }}
     >
-      <div className="bg-white bg-opacity-90 p-4 rounded-lg border-2 border-black">
+      <div className="bg-white bg-opacity-50 p-4 rounded-lg border-2 border-black">
         <h2 className="text-3xl font-semibold mb-4 flex items-center justify-center text-center gap-2">
           <FaCar />
           <span>Your Vehicle</span>
