@@ -9,9 +9,6 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
 
   return (
     <>
-    <h2 className="text-3xl font-semibold mb-4 flex items-center justify-center text-center gap-2">
-          Choose Your Vehicle
-        </h2>
      <div
       className="bg-gray-100 p-4 relative overflow-hidden"
       style={{
