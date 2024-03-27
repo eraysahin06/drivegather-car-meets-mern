@@ -111,7 +111,7 @@ const Navbar = () => {
                 className={`flex items-center bg-white border-2 border-black hover:bg-gray-200 text-black font-bold py-1 px-3 rounded ml-2`}
               >
                 <FaUserCircle size={24} />
-                <span className="ml-2">{user.displayName || "User"}</span>
+                <span className="ml-2">{user.username || "User"}</span>
               </button>
               {isDropdownOpen && (
                 <div className="absolute right-0 mt-2 bg-white text-black rounded-md shadow-lg py-1">
