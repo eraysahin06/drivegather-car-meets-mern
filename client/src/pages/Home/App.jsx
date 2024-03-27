@@ -59,7 +59,7 @@ function App() {
           <HeroSection />
         {/* Welcome User */}
         {userDetails && (
-          <div className="text-center p-4 bg-black text-white">
+          <div className="text-center p-4 bg-gray-800 text-white">
             <h2 className="text-xl font-semibold">
               Welcome to DriveGather, {firstName}
             </h2>
