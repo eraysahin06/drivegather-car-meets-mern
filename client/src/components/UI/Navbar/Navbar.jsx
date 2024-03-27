@@ -1,5 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import { FaBars, FaHome, FaTimes, FaUserCircle, FaUsers } from "react-icons/fa";
+import {
+  FaArrowCircleLeft,
+  FaBars,
+  FaHome,
+  FaTimes,
+  FaUser,
+  FaUserCircle,
+  FaUsers,
+} from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import { useAuth } from "../../../hooks/useAuth";
@@ -77,7 +85,7 @@ const Navbar = () => {
             }`}
             onClick={closeMenu}
           >
-           <FaHome /> <span className="ml-2">Home</span>
+            <FaHome /> <span className="ml-2">Home</span>
           </Link>
           {user && (
             <Link
@@ -89,7 +97,7 @@ const Navbar = () => {
               }`}
               onClick={closeMenu}
             >
-            <FaUsers /> <span className="ml-2">Communities</span> 
+              <FaUsers /> <span className="ml-2">Communities</span>
             </Link>
           )}
 
@@ -108,7 +116,9 @@ const Navbar = () => {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`flex items-center bg-white border-2 border-black hover:bg-gray-200 text-black font-bold py-1 px-3 rounded ml-2`}
+                className={`flex items-center bg-white border-2 border-black hover:bg-black hover:text-white font-bold py-1 px-3 rounded ml-2 ${
+                  isScrolled && "text-black"
+                }`}
               >
                 <FaUserCircle size={24} />
                 <span className="ml-2">{user.username || "User"}</span>
@@ -117,16 +127,16 @@ const Navbar = () => {
                 <div className="absolute right-0 mt-2 bg-white text-black rounded-md shadow-lg py-1">
                   <Link
                     to="/profile"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="flex items-center justify-center text-left px-4 py-2 hover:bg-gray-100"
                     onClick={closeMenu}
                   >
-                    Profile
+                    <FaUser /> <span className="ml-2">{user.displayName}</span>
                   </Link>
                   <button
                     onClick={handleSignOut}
-                    className="block w-full text-left px-4 py-2 hover:bg-red-200"
+                    className="flex items-center justify-center w-full text-left px-4 py-2 hover:bg-red-500 hover:text-white"
                   >
-                    Logout
+                    <FaArrowCircleLeft /> <span className="ml-2">Logout</span>
                   </button>
                 </div>
               )}
