@@ -8,7 +8,7 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div>
      <div
       className="bg-gray-100 p-4 relative overflow-hidden"
       style={{
@@ -47,7 +47,7 @@ const VehicleSection = ({ user, hasVehicle, vehicle }) => {
         )}
       </div>
     </div>
-    </>
+    </div>
    
   );
 };
