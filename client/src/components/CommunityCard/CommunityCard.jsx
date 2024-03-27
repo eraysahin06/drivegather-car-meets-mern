@@ -82,7 +82,7 @@ const CommunityCard = ({ community, isCreator }) => {
         </div>
         {!isCreator &&
           (isJoined ? (
-            <span className="bg-gray-700 mt-4 text-green-500 flex items-center justify-center">
+            <span className="bg-gray-700 mt-4 p-2 rounded text-green-500 flex items-center justify-center">
               <FaCheck className="mr-1" /> Joined
             </span>
           ) : isPending ? (
