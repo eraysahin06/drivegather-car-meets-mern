@@ -62,9 +62,9 @@ const Communities = () => {
           onClick={() =>
             user ? navigate("/create-community") : navigate("/register")
           }
-          className="p-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+          className="flex items-center justify-center gap-3 p-3 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
         >
-          <FaPlus size={20} />
+          <FaPlus size={20} /> Create Community
         </button>
       </div>
       <div className="space-y-8">
