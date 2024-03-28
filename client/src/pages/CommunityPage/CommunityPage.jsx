@@ -175,7 +175,7 @@ const CommunityPage = () => {
       {user && user._id === community.creatorId && (
         <div>
           <button
-            className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-6 px-4 rounded"
+            className="bg-gray-800 hover:bg-white hover:text-gray-800 border-2 border-gray-800 text-white font-bold py-6 px-4 rounded"
             onClick={() => setShowForm(true)}
           >
             Create a Car Meet
