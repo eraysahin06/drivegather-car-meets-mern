@@ -32,7 +32,7 @@ const CarMeets = ({
     };
 
     if (communityType === "Public" || isMember) {
-      fetchCarMeets();
+      fetchCarMeets(); //this
     }
   }, [communityId, communityType, isMember]);
 
