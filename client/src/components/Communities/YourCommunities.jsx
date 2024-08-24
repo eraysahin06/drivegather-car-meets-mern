@@ -8,6 +8,7 @@ import useGetUser from "../../hooks/useGetUser";
 const Communities = () => {
   const user = useGetUser();
   const [communities, setCommunities] = useState([]);
+  const [showAll, setShowAll] = useState(false); // State to control whether to show all communities
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,13 +48,19 @@ const Communities = () => {
   const joinedCommunities = communities.filter(
     (community) => community.isMember && community.creatorId !== user?._id
   );
+  const otherCommunities = communities.filter(
+    (community) => !community.isMember && community.creatorId !== user?._id
+  );
+
+  // Determine which communities to display
+  const communitiesToDisplay = showAll ? otherCommunities : otherCommunities.slice(0, 3);
 
   return (
     <div className="container mx-auto p-8">
       <div className="flex flex-col md:flex-row justify-between items-center mb-6">
         <h2 className="text-3xl font-semibold mb-4 md:mb-0">
           <FaUsers className="inline-block mr-2" />
-          Communities
+          Communities ({communities.length} Total)
         </h2>
         <button
           onClick={() =>
@@ -100,31 +107,53 @@ const Communities = () => {
             </div>
           </>
         )}
+        <hr />
+        <div className="flex flex-col items-center justify-center">
+          <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
+            Explore Communities ({otherCommunities.length} available)
+          </h3>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-          {!user && (
+          {user && communitiesToDisplay.length > 0 ? (
+            communitiesToDisplay.map((community) => (
+              <CommunityCard
+                key={community._id}
+                community={community}
+                isCreator={false}
+                isJoined={false}
+              />
+            ))
+          ) : (
             <div className="w-full text-center">
               <p className="text-gray-500 mb-4">
                 {user
                   ? "You have joined all available communities."
                   : "Sign in to explore communities."}
               </p>
-
-              <Link
-                to="/register"
-                className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800"
-              >
-                Explore Communities
-              </Link>
+              {!user && (
+                <Link
+                  to="/register"
+                  className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800"
+                >
+                  Explore Communities
+                </Link>
+              )}
             </div>
           )}
         </div>
-        <div className="flex items-center justify-center">
-        <Link to='/communities' className="text-center bg-black hover:bg-white hover:text-black text-white font-bold py-2 px-4 rounded border-2 border-gray-700">
-          View All Communities
-        </Link>
-        </div>
-       
+
+        {/* Toggle button */}
+        {otherCommunities.length > 3 && (
+          <div className="flex items-center justify-center">
+            <button
+              onClick={() => setShowAll((prevShowAll) => !prevShowAll)}
+              className="text-center bg-black hover:bg-white hover:text-black text-white font-bold py-2 px-4 rounded border-2 border-gray-700"
+            >
+              {showAll ? "Show Less" : "View All Communities"}
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

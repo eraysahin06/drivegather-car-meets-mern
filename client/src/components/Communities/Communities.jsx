@@ -108,28 +108,18 @@ const Communities = () => {
           <h3 className="text-2xl text-center md:text-left font-semibold text-gray-800">
             Explore Communities ({otherCommunities.length} available)
           </h3>
-          {otherCommunities.length > 3 && (
-            <Link
-              to="/communities"
-              className="text-sm w-[100px] hover:bg-white hover:text-black bg-black text-white text-center border-2 border-gray-700"
-            >
-              View all
-            </Link>
-          )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {user && otherCommunities.length > 0 ? (
-            otherCommunities
-              .slice(0, 3)
-              .map((community) => (
-                <CommunityCard
-                  key={community._id}
-                  community={community}
-                  isCreator={false}
-                  isJoined={false}
-                />
-              ))
+            otherCommunities.map((community) => (
+              <CommunityCard
+                key={community._id}
+                community={community}
+                isCreator={false}
+                isJoined={false}
+              />
+            ))
           ) : (
             <div className="w-full text-center">
               <p className="text-gray-500 mb-4">
