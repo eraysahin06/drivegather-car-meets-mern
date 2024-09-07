@@ -109,7 +109,7 @@ const CarMeets = ({
         {carMeets.map((carMeet) => (
           <div
             key={carMeet._id}
-            className="bg-white text-black border-2 border-gray-700 p-4 mb-4 rounded-md"
+            className="bg-white text-black max-w-[300px] flex flex-col items-center text-center border-2 border-gray-700 p-4 mb-4 rounded-md"
           >
             {editCarMeetId === carMeet._id ? (
               <form
